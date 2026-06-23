@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --accent: #d92323;
+  --muted: #a3a3a3;
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-hover: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- INCENTIVES STANDALONE CSS --- */
+
+.spotlight-overlay {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  pointer-events: none;
+  z-index: 5;
+  will-change: transform;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(ellipse 400px 1100px at 50% 0%,
+      rgba(255, 253, 235, 0.45) 0%,
+      rgba(255, 250, 215, 0.3) 15%,
+      rgba(255, 245, 195, 0.15) 35%,
+      rgba(255, 240, 180, 0.05) 55%,
+      transparent 75%),
+    radial-gradient(ellipse 800px 750px at 50% 0%,
+      rgba(255, 245, 195, 0.1) 0%,
+      rgba(255, 235, 170, 0.03) 40%,
+      transparent 70%);
+}
+
+.stage-wrapper {
+  position: relative;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(65px, 4.8vw, 85px);
+  container-type: size;
+}
+
+.stage-container {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+}
+
+.stage-base {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  margin-top: -8.5cqw;
+}
+
+.stage-area {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  gap: 0;
+  z-index: 2;
+}
+
+/* FIX 1: Intro animation via class toggle — keeps inline style clear for hover transform */
+.item-column {
+  position: relative;
+  flex: 1 1 0;
+  height: 100%;
+  perspective: 900px;
+  /* Start hidden for intro animation */
+  opacity: 0;
+  transform: translateY(55px);
+  /* Hover transition on transform + opacity both handled here */
+  transition:
+    opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Intro animation: JS adds this class after mount */
+.item-column.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover lifts the column — only applies once is-visible, so no flash */
+.item-column.is-visible:hover {
+  transform: translateY(-12px) scale(1.03);
+}
+
+.item-number {
+  font-size: clamp(0.65rem, 0.85vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  display: block;
+}
+
+.item-name {
+  font-size: clamp(0.6rem, 0.8vw, 0.85rem);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  line-height: 1.5;
+  display: block;
+}
+
+.item-img-wrap {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: min(51cqw, 88cqh);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 0.2vw;
+  pointer-events: none;
+}
+
+/* FIX 2: GPU layer promotion — prevents drop-shadow rasterization blurring on hover scale */
+.item-img {
+  max-height: 100%;
+  width: auto;
+  max-width: 120%;
+  object-fit: contain;
+  display: block;
+  /* Promote to GPU compositing layer at native resolution BEFORE hover happens */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform, filter;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.92)) drop-shadow(0 10px 22px rgba(0, 0, 0, 0.75));
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  pointer-events: auto;
+  transform-origin: bottom center;
+}
+
+/* Keep translateZ(0) on hover so the GPU layer stays active during scale */
+.item-column:hover .item-img {
+  transform: translateZ(0) scale(1.04);
+  filter: drop-shadow(0 45px 90px rgba(0, 0, 0, 0.95)) drop-shadow(0 16px 36px rgba(255, 184, 77, 0.25)) drop-shadow(0 0 55px rgba(255, 255, 255, 0.08));
+}
