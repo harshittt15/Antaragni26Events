@@ -61,7 +61,7 @@ export const incentivesLayout: IncentivesLayoutConfig = ${JSON.stringify(layout,
     // 3. Handle validation errors specifically
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid input data", details: error.errors }, 
+        { error: "Invalid input data", details: error.issues }, 
         { status: 400 }
       );
     }

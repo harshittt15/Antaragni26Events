@@ -116,12 +116,12 @@ export function TasksTab() {
   };
 
   return (
-    <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl p-6 md:p-8 relative min-h-[400px]">
+    <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl p-4 sm:p-6 md:p-8 relative min-h-[400px]">
       
       {/* Modal Overlay */}
       {isOpen && currentTask && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm rounded-xl p-4">
-          <div className="bg-[#111] border border-white/10 rounded-lg p-6 w-full max-w-md shadow-2xl relative">
+          <div className="bg-[#111] border border-white/10 rounded-lg p-4 sm:p-6 w-full max-w-md shadow-2xl relative">
             <button
               className="absolute top-4 right-4 text-white/40 hover:text-white"
               onClick={() => {

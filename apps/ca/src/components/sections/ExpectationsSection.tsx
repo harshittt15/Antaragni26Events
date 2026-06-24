@@ -37,7 +37,7 @@ const expectations = [
 
 export function ExpectationsSection() {
   return (
-    <section id="roles" className="relative w-full flex flex-col py-24 md:py-32 bg-black overflow-hidden">
+    <section id="roles" className="relative w-full flex flex-col py-16 sm:py-24 md:py-32 bg-black overflow-hidden">
 
       {/* Ambient bottom glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] pointer-events-none">
@@ -70,7 +70,7 @@ export function ExpectationsSection() {
           </div>
 
           {/* Headline Block: Heading and Diagonal Line */}
-          <div className="relative w-full flex flex-col md:flex-row md:items-center justify-between mb-16 md:mb-24 min-h-[160px] md:min-h-[220px]">
+          <div className="relative w-full flex flex-col md:flex-row md:items-center justify-between mb-12 md:mb-24 min-h-0 md:min-h-[220px]">
             
             {/* The title "What We Expect" */}
             <motion.div

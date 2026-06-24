@@ -12,7 +12,7 @@ import { assets } from "@/lib/assets";
 
 export function SpiritSection() {
   return (
-    <section id="about" className="relative w-full flex flex-col py-24 md:py-32 overflow-hidden border-t border-white/5">
+    <section id="about" className="relative w-full flex flex-col py-16 sm:py-24 md:py-32 overflow-hidden border-t border-white/5">
       {/* Film grain texture */}
       <div className="grain-overlay" />
       <GridContainer className="items-start">
@@ -54,7 +54,7 @@ export function SpiritSection() {
         </motion.div>
 
         {/* Right Side: Hero Image Area */}
-        <div className="col-span-1 md:col-span-3 lg:col-span-6 relative mt-16 md:mt-0 min-h-[500px] flex items-center justify-center pointer-events-none">
+        <div className="col-span-1 md:col-span-3 lg:col-span-6 relative mt-8 md:mt-0 min-h-[300px] md:min-h-[500px] flex items-center justify-center pointer-events-none">
           {/* Volumetric Spotlight mimicking the stage lights */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white opacity-[0.05] blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
           
@@ -86,7 +86,7 @@ export function SpiritSection() {
       {/* Bottom Row: Statistics */}
       <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-20 mt-32">
         <motion.div 
-          className="w-full grid grid-cols-2 md:grid-cols-5 border-t border-b border-white/5 py-12 md:py-16 gap-y-12 relative overflow-hidden"
+          className="w-full grid grid-cols-2 md:grid-cols-5 border-t border-b border-white/5 py-10 md:py-16 gap-y-10 md:gap-y-12 relative overflow-hidden"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"

@@ -179,7 +179,7 @@ export function FAQSection() {
           <EditorialHeading 
             as="h2" 
             variant="hero" 
-            className="text-[15vw] md:text-[140px] leading-[0.85] text-foreground flex flex-col mb-12"
+            className="text-[clamp(72px,15vw,140px)] leading-[0.85] text-foreground flex flex-col mb-8 md:mb-12"
           >
             <span>BEFORE</span>
             <span>YOU</span>
@@ -226,7 +226,7 @@ export function FAQSection() {
               >
                 <button
                   onClick={() => toggleExpand(item.id)}
-                  className="w-full flex flex-col md:flex-row items-start md:items-center py-10 md:py-14 gap-8 md:gap-12 group text-left cursor-pointer outline-none"
+                  className="w-full flex flex-col md:flex-row items-start md:items-center py-7 md:py-14 gap-4 md:gap-12 group text-left cursor-pointer outline-none"
                 >
                   {/* Number */}
                   <span className={cn(
@@ -283,7 +283,7 @@ export function FAQSection() {
                       transition={{ type: "spring", stiffness: 100, damping: 20, mass: 1 }}
                       className="overflow-hidden"
                     >
-                      <div className="pl-0 md:pl-[128px] pr-0 md:pr-12 pb-16">
+                      <div className="pl-0 md:pl-[128px] pr-0 md:pr-12 pb-8 md:pb-16">
                         <div className="w-full h-[1px] bg-white/10" />
                         <motion.div
                           initial={{ y: 20, opacity: 0 }}

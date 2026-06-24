@@ -12,7 +12,10 @@ const MAX_REQUESTS_PER_WINDOW = 30; // 30 requests per minute per IP
 
 export function middleware(request: NextRequest) {
   // Extract the IP address
-  const ip = request.ip ?? request.headers.get('x-forwarded-for') ?? 'unknown-ip';
+  // Extract the IP address — request.ip was removed in Next.js 15+, use headers instead
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() 
+    ?? request.headers.get('x-real-ip') 
+    ?? 'unknown-ip';
   
   // Apply rate limiting exclusively to API routes
   if (request.nextUrl.pathname.startsWith('/api/')) {

@@ -114,7 +114,7 @@ export function SponsorsSection() {
   return (
     <section 
       id="sponsors"
-      className="relative w-full flex flex-col py-10 md:py-16 overflow-hidden bg-black border-t border-white/5 min-h-[85vh] lg:h-[90vh] justify-center"
+      className="relative w-full flex flex-col py-12 md:py-16 overflow-hidden bg-black border-t border-white/5 lg:min-h-[85vh] lg:h-[90vh] justify-center"
       onMouseMove={handleMouseMove}
       onMouseLeave={resetMouse}
     >
@@ -131,7 +131,7 @@ export function SponsorsSection() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
             >
-              <h2 className="text-accent text-3xl md:text-4xl lg:text-5xl font-medium uppercase tracking-[0.2em] whitespace-nowrap">
+              <h2 className="text-accent text-[clamp(20px,5vw,48px)] font-medium uppercase tracking-[0.1em] sm:tracking-[0.2em] leading-tight">
                 OUR VALUED SUPPORTERS
               </h2>
             </motion.div>

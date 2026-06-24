@@ -107,24 +107,24 @@ export function IdeasTab() {
     <div className="w-full border border-white/10 bg-white/[0.02] backdrop-blur-md rounded-xl overflow-hidden">
 
       {/* Header */}
-      <div className="px-8 md:px-10 pt-8 pb-6 border-b border-white/5">
-        <div className="flex items-end justify-between gap-4">
+      <div className="px-5 sm:px-8 md:px-10 pt-7 sm:pt-8 pb-6 border-b border-white/5">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-4">
           <div>
             <p className="text-[10px] font-sans font-semibold tracking-[0.25em] text-accent uppercase mb-2">
               IDEAS
             </p>
-            <h2 className="font-serif text-[28px] md:text-[36px] uppercase text-white leading-none tracking-tight">
+            <h2 className="font-serif text-[24px] sm:text-[28px] md:text-[36px] uppercase text-white leading-none tracking-tight">
               Share Your Vision
             </h2>
           </div>
-          <p className="hidden md:block text-[11px] font-sans text-white/30 tracking-wide leading-relaxed text-right max-w-[260px] pb-1">
-            Got a creative idea for promoting Antaragni&apos;26?<br />We want to hear it.
+          <p className="text-[11px] font-sans text-white/30 tracking-wide leading-relaxed sm:text-right max-w-[260px] pb-1">
+            Got a creative idea for promoting Antaragni&apos;26?<br /> We want to hear it.
           </p>
         </div>
       </div>
 
       {/* Form Body */}
-      <form onSubmit={handleSubmit} className="px-8 md:px-10 py-8 flex flex-col gap-8">
+      <form onSubmit={handleSubmit} className="px-5 sm:px-8 md:px-10 py-7 sm:py-8 flex flex-col gap-7 sm:gap-8">
 
         {/* Category Chips */}
         <div className="flex flex-col gap-3">
@@ -205,8 +205,8 @@ export function IdeasTab() {
         </div>
 
         {/* Submit Row */}
-        <div className="flex items-center justify-between pt-2 border-t border-white/5">
-          <p className="text-[15px] font-sans text-white/20 tracking-wide">
+        <div className="flex flex-col xs:flex-row xs:items-center justify-between pt-2 border-t border-white/5 gap-4">
+          <p className="text-[13px] font-sans text-white/20 tracking-wide">
             All ideas are reviewed by the core team
           </p>
           <button

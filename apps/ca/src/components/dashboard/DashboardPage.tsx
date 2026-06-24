@@ -31,21 +31,21 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-6 md:px-10 lg:px-20 pt-4 md:pt-6 relative z-10">
+    <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 lg:px-20 pt-4 md:pt-6 relative z-10">
       
       {/* Compact Hero Section */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
         {/* Left Column: Heading and Tabs (occupying 4 columns) */}
         <div className="col-span-1 lg:col-span-4 flex flex-col justify-center text-left">
-          <h1 className="font-serif uppercase -tracking-[0.02em] text-[8vw] sm:text-[6vw] lg:text-[52px] xl:text-[64px] leading-[0.85] text-foreground">
+          <h1 className="font-serif uppercase -tracking-[0.02em] text-[clamp(36px,8vw,64px)] leading-[0.85] text-foreground">
             CAMPUS<br />
             AMBASSADOR<br />
             <span className="text-accent">DASHBOARD</span>
           </h1>
 
-          {/* Dashboard Navigation Tabs */}
-          <div className="flex gap-6 md:gap-10 mt-10 border-b border-white/5 w-full">
+          {/* Dashboard Navigation Tabs — horizontally scrollable on mobile */}
+          <div className="flex gap-5 sm:gap-6 md:gap-10 mt-8 md:mt-10 border-b border-white/5 w-full overflow-x-auto scrollbar-hide pb-px">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -64,8 +64,8 @@ export function DashboardPage() {
         </div>
 
         {/* Right Column: Visual Landscape Hero Image (occupying 8 columns for maximum visual scale on desktop) */}
-        <div className="col-span-1 lg:col-span-8 flex items-center justify-center mt-4 lg:mt-0 z-10">
-          <div className="w-full h-[190px] sm:h-[280px] lg:h-[310px] xl:h-[350px] relative overflow-hidden mb-8">
+        <div className="col-span-1 lg:col-span-8 flex items-center justify-center mt-2 lg:mt-0 z-10">
+          <div className="w-full h-[160px] xs:h-[190px] sm:h-[260px] lg:h-[310px] xl:h-[350px] relative overflow-hidden mb-6 md:mb-8">
             {/* Main Visual */}
             <Image 
               src="/assets/dashboard/main_image.png" 

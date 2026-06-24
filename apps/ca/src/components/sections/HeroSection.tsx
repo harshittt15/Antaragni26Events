@@ -29,7 +29,7 @@ export function HeroSection() {
   const bgOpacity = useTransform(scrollY, [0, 400], [0.05, 0]);
 
   return (
-    <section id="home" className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-12 md:pt-20 pb-20 overflow-hidden">
+    <section id="home" className="relative w-full min-h-[calc(100vh-80px)] flex flex-col pt-8 sm:pt-12 md:pt-20 pb-12 sm:pb-20 overflow-hidden">
 
       {/* Film grain texture */}
       <div className="grain-overlay z-0" />
@@ -99,7 +99,7 @@ export function HeroSection() {
             variants={staggerFast}
             initial="hidden"
             animate="visible"
-            className="flex flex-col gap-2 mt-8 md:mt-12"
+            className="flex flex-col gap-2 mt-6 md:mt-12"
           >
             {[
               { text: "LEAD CULTURE.", color: "text-muted" },
@@ -149,7 +149,7 @@ export function HeroSection() {
         </div>
 
         {/* Right Side: Stats */}
-        <div className="col-span-1 md:col-span-3 lg:col-span-4 flex flex-col justify-center relative mt-16 md:mt-0">
+        <div className="col-span-1 md:col-span-3 lg:col-span-4 flex flex-col justify-center relative mt-8 md:mt-0">
 
           {/* Silhouette Image */}
           <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none -z-10 -ml-20 mt-10">

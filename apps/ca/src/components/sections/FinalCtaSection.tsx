@@ -98,7 +98,7 @@ export function FinalCtaSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-30 w-full flex flex-col h-full min-h-screen px-6 md:px-10 lg:px-20 py-24">
+      <div className="relative z-30 w-full flex flex-col h-full min-h-screen px-4 sm:px-6 md:px-10 lg:px-20 py-24">
         
         {/* Center Headline Block */}
         <div className="flex flex-col items-center justify-center flex-grow text-center mt-16 md:mt-24 pointer-events-none">
