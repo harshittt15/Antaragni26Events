@@ -1,0 +1,215 @@
+@import "tailwindcss";
+@import "@repo/tailwind-config";
+@import "@repo/ui/styles.css";
+@plugin "@tailwindcss/typography";
+
+/* ============ ANTARAGNI '26 — DESIGN TOKENS ============ */
+@theme {
+	--color-background: #0a0612;
+	--color-foreground: #f4f1fa;
+	--color-primary: #c7f441; /* electric lime */
+	--color-secondary: #ff6ec7; /* hot pink */
+	--color-accent: #7c3aed; /* electric violet */
+}
+
+:root {
+	--color-background: #0a0612;
+	--color-foreground: #f4f1fa;
+	--color-primary: #c7f441;
+	--color-secondary: #ff6ec7;
+	--color-accent: #7c3aed;
+
+	--lime: #c7f441;
+	--pink: #ff6ec7;
+	--violet: #7c3aed;
+	--orange: #ff8a3d;
+	--cyan: #4dd8ff;
+
+	--font-sans: var(--font-inter);
+	--font-title: var(--font-rakkas);
+}
+
+body {
+	@apply bg-background text-foreground font-sans;
+	overflow-x: hidden;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+	@apply font-title;
+}
+
+::selection {
+	background: var(--lime);
+	color: #0a0612;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-track {
+	background: #0a0612;
+}
+::-webkit-scrollbar-thumb {
+	background: #2c2140;
+	border-radius: 999px;
+	border: 2px solid #0a0612;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #43325f;
+}
+
+/* custom cursor takes over on fine pointers */
+@media (pointer: fine) {
+	body,
+	a,
+	button,
+	input,
+	select,
+	textarea,
+	label,
+	[role="button"] {
+		cursor: none !important;
+	}
+}
+
+/* ============ UTILITIES ============ */
+
+.text-gradient {
+	background: linear-gradient(92deg, var(--lime) 0%, var(--pink) 48%, var(--violet) 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.text-gradient-pink {
+	background: linear-gradient(92deg, var(--pink) 0%, var(--orange) 60%, var(--lime) 120%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.text-stroke {
+	-webkit-text-stroke: 1.5px rgba(244, 241, 250, 0.4);
+	color: transparent;
+}
+
+.text-stroke-lime {
+	-webkit-text-stroke: 1.5px var(--lime);
+	color: transparent;
+}
+
+.glass {
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.09);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.chip {
+	@apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em];
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn-festival {
+	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-300;
+	background: linear-gradient(92deg, var(--violet), var(--pink));
+	color: #fff;
+	box-shadow:
+		0 0 24px rgba(124, 58, 237, 0.45),
+		0 0 60px rgba(255, 110, 199, 0.15);
+}
+.btn-festival:hover {
+	transform: scale(1.045);
+}
+
+.btn-lime {
+	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-300;
+	background: var(--lime);
+	color: #0a0612;
+	box-shadow: 0 0 28px rgba(199, 244, 65, 0.35);
+}
+.btn-lime:hover {
+	transform: scale(1.045);
+}
+
+.btn-ghost {
+	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-all duration-300;
+	border: 1px solid rgba(244, 241, 250, 0.25);
+	color: var(--color-foreground);
+}
+.btn-ghost:hover {
+	border-color: var(--lime);
+	color: var(--lime);
+}
+
+/* marquee */
+@keyframes marquee-x {
+	to {
+		transform: translateX(-50%);
+	}
+}
+.marquee-track {
+	display: flex;
+	width: max-content;
+	animation: marquee-x var(--marquee-dur, 30s) linear infinite;
+}
+.marquee-paused:hover .marquee-track {
+	animation-play-state: paused;
+}
+
+/* film grain overlay */
+.grain-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 70;
+	pointer-events: none;
+	opacity: 0.055;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* glow card hover */
+.glow-card {
+	position: relative;
+	overflow: hidden;
+	transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.glow-card::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	opacity: 0;
+	transition: opacity 0.5s;
+	background: radial-gradient(
+		600px circle at var(--mx, 50%) var(--my, 50%),
+		rgba(199, 244, 65, 0.08),
+		transparent 45%
+	);
+	pointer-events: none;
+}
+.glow-card:hover::after {
+	opacity: 1;
+}
+
+/* section eyebrow */
+.eyebrow {
+	@apply text-xs font-bold uppercase tracking-[0.35em];
+	color: var(--lime);
+}
+
+@media screen and (max-width: 768px) {
+	.about-desk {
+		display: none;
+	}
+	.about-mob {
+		display: block;
+	}
+}
+@media screen and (min-width: 769px) {
+	.about-desk {
+		display: block;
+	}
+	.about-mob {
+		display: none;
+	}
+}
