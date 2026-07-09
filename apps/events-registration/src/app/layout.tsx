@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Unbounded, Space_Grotesk } from "next/font/google";
+import { Unbounded, Space_Grotesk, Anton } from "next/font/google";
 import "./globals.css";
 import { LenisProvider } from "@repo/ui/lenisProvider";
 import { ClientComponent } from "../components/clientComponent";
@@ -21,6 +21,13 @@ const grotesk = Space_Grotesk({
 	variable: "--font-inter",
 });
 
+/* Condensed poster face — massive lineup-poster headline stacks. */
+const anton = Anton({
+	subsets: ["latin"],
+	weight: "400",
+	variable: "--font-poster",
+});
+
 export const metadata: Metadata = {
 	title: "Antaragni '26 — Events & Roadtrips | IIT Kanpur",
 	description:
@@ -34,15 +41,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${unbounded.variable} ${grotesk.variable} antialiased`}>
+			<body
+				className={`${unbounded.variable} ${grotesk.variable} ${anton.variable} antialiased`}
+			>
 				<Cursor />
 				<Toaster
 					toastOptions={{
 						style: {
-							background: "rgba(20, 12, 34, 0.92)",
+							background: "#12091f",
 							color: "#f4f1fa",
-							border: "1px solid rgba(255,255,255,0.12)",
-							backdropFilter: "blur(12px)",
+							border: "2px solid rgba(255,255,255,0.16)",
+							boxShadow: "4px 4px 0 rgba(0,0,0,0.5)",
 						},
 					}}
 				/>

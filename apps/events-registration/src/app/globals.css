@@ -27,6 +27,15 @@
 
 	--font-sans: var(--font-inter);
 	--font-title: var(--font-rakkas);
+
+	--ink: #12091f; /* solid panel ink — replaces glassmorphism */
+	--paper: #f4f1fa;
+}
+
+/* condensed poster face (Anton) for massive headline stacks */
+.font-poster {
+	font-family: var(--font-poster), var(--font-rakkas), sans-serif;
+	letter-spacing: 0.01em;
 }
 
 body {
@@ -98,49 +107,247 @@ body {
 	color: transparent;
 }
 
+/* .glass is DEAD as glassmorphism — every legacy usage now renders as a
+   solid screen-printed ink panel with a hard offset shadow */
 .glass {
-	background: rgba(255, 255, 255, 0.04);
-	border: 1px solid rgba(255, 255, 255, 0.09);
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
+	background: var(--ink);
+	border: 2px solid rgba(244, 241, 250, 0.16);
+	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
 .chip {
-	@apply inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em];
-	background: rgba(255, 255, 255, 0.06);
-	border: 1px solid rgba(255, 255, 255, 0.12);
+	@apply inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em];
+	background: var(--ink);
+	border: 1.5px solid currentColor;
+	border-radius: 4px;
+	transform: rotate(-1deg);
 }
 
+/* sticker buttons — solid ink, hard shadow, slight tilt; no glow, no blur */
 .btn-festival {
-	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-300;
+	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-200;
 	background: linear-gradient(92deg, var(--violet), var(--pink));
 	color: #fff;
-	box-shadow:
-		0 0 24px rgba(124, 58, 237, 0.45),
-		0 0 60px rgba(255, 110, 199, 0.15);
+	border: 2px solid #0a0612;
+	border-radius: 10px;
+	box-shadow: 5px 5px 0 var(--lime);
+	transform: rotate(-1.2deg);
 }
 .btn-festival:hover {
-	transform: scale(1.045);
+	transform: rotate(0.5deg) translate(-2px, -2px);
+	box-shadow: 7px 7px 0 var(--lime);
 }
 
 .btn-lime {
-	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-300;
+	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-200;
 	background: var(--lime);
 	color: #0a0612;
-	box-shadow: 0 0 28px rgba(199, 244, 65, 0.35);
+	border: 2px solid #0a0612;
+	border-radius: 10px;
+	box-shadow: 5px 5px 0 var(--pink);
+	transform: rotate(1deg);
 }
 .btn-lime:hover {
-	transform: scale(1.045);
+	transform: rotate(-0.5deg) translate(-2px, -2px);
+	box-shadow: 7px 7px 0 var(--pink);
 }
 
 .btn-ghost {
-	@apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-all duration-300;
-	border: 1px solid rgba(244, 241, 250, 0.25);
+	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-all duration-200;
+	border: 2px dashed rgba(244, 241, 250, 0.4);
+	border-radius: 10px;
 	color: var(--color-foreground);
 }
 .btn-ghost:hover {
 	border-color: var(--lime);
+	border-style: solid;
 	color: var(--lime);
+	box-shadow: 4px 4px 0 rgba(199, 244, 65, 0.35);
+	transform: translate(-1px, -1px);
+}
+
+/* ============ POSTER TOOLKIT ============ */
+
+/* masking-tape strip */
+.tape {
+	@apply inline-block px-5 py-1.5 text-xs font-bold uppercase tracking-[0.25em];
+	background: var(--lime);
+	color: #0a0612;
+	clip-path: polygon(
+		2% 0%, 98% 4%, 100% 32%, 99% 68%, 100% 96%, 96% 100%,
+		3% 98%, 0% 70%, 1% 30%
+	);
+}
+.tape-pink {
+	background: var(--pink);
+}
+.tape-cyan {
+	background: var(--cyan);
+}
+
+/* ticket stub — punched notches on the sides */
+.ticket {
+	position: relative;
+	background: var(--ink);
+	border: 2px solid rgba(244, 241, 250, 0.18);
+	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+	mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #fff) left / 51% 100% no-repeat,
+		radial-gradient(circle 9px at 100% 50%, transparent 98%, #fff) right / 50% 100% no-repeat;
+	-webkit-mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #fff) left / 51% 100% no-repeat,
+		radial-gradient(circle 9px at 100% 50%, transparent 98%, #fff) right / 50% 100% no-repeat;
+}
+
+/* halftone dot texture */
+.halftone {
+	background-image: radial-gradient(rgba(244, 241, 250, 0.25) 1.2px, transparent 1.3px);
+	background-size: 10px 10px;
+}
+
+/* huge repeated backdrop word — poster wallpaper type */
+.backdrop-word {
+	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.08);
+	color: transparent;
+	user-select: none;
+	pointer-events: none;
+	line-height: 0.82;
+	white-space: nowrap;
+}
+
+/* animated gradient sweeping through display type */
+@keyframes gradient-sweep {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+.text-gradient-live {
+	background: linear-gradient(100deg, var(--lime), var(--pink), var(--violet), var(--cyan), var(--lime));
+	background-size: 300% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: gradient-sweep 7s ease-in-out infinite;
+}
+
+/* slow float for stickers / decorations */
+@keyframes float-y {
+	0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+	50% { transform: translateY(-14px) rotate(calc(var(--rot, 0deg) + 3deg)); }
+}
+.float-slow {
+	animation: float-y 6s ease-in-out infinite;
+}
+@keyframes spin-slow {
+	to { transform: rotate(360deg); }
+}
+.spin-slow {
+	animation: spin-slow 22s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.float-slow,
+	.spin-slow,
+	.text-gradient-live {
+		animation: none;
+	}
+}
+
+/* ============ ATMOSPHERE (night-festival background) ============ */
+
+@keyframes atmo-drift {
+	0% { transform: translate(0, 0) scale(1); }
+	33% { transform: translate(40px, -30px) scale(1.08); }
+	66% { transform: translate(-30px, 24px) scale(0.95); }
+	100% { transform: translate(0, 0) scale(1); }
+}
+.atmo-blob {
+	animation: atmo-drift 36s ease-in-out infinite;
+	will-change: transform;
+}
+
+@keyframes atmo-sway {
+	0%, 100% { transform: rotate(-7deg); opacity: 0.55; }
+	50% { transform: rotate(7deg); opacity: 1; }
+}
+.atmo-beam {
+	animation: atmo-sway 20s ease-in-out infinite;
+	mix-blend-mode: screen;
+	filter: blur(18px);
+	pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.atmo-blob,
+	.atmo-beam {
+		animation: none;
+	}
+}
+
+/* ============ HERO WORDMARK (layered chrome poster type) ============ */
+
+/* premium chrome sweep — soft cream→pink→violet→cyan, no harsh rainbow */
+.text-chrome {
+	background: linear-gradient(
+		105deg,
+		#fdfbff 0%,
+		#ffd9f2 18%,
+		#ff6ec7 38%,
+		#a78bfa 58%,
+		#4dd8ff 78%,
+		#fdfbff 100%
+	);
+	background-size: 240% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: gradient-sweep 13s ease-in-out infinite;
+}
+
+/* the stacked copies behind the hero word */
+.hero-word {
+	white-space: nowrap;
+	letter-spacing: -0.02em;
+	line-height: 0.9;
+	transform: scaleY(1.12);
+	transform-origin: bottom left;
+}
+.hero-word-echo {
+	-webkit-text-stroke: 1.5px rgba(199, 244, 65, 0.5);
+	color: transparent;
+}
+.hero-word-ink {
+	color: #0a0612;
+	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.18);
+}
+
+/* ============ POSTER RAIL (horizontal stage scroll) ============ */
+
+.rail {
+	display: flex;
+	gap: 1.25rem;
+	overflow-x: auto;
+	padding: 1.5rem 0.5rem 2rem;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+.rail::-webkit-scrollbar {
+	display: none;
+}
+.rail > * {
+	scroll-snap-align: start;
+	flex-shrink: 0;
+}
+
+/* marker highlight behind a phrase */
+.marker {
+	background: linear-gradient(100deg, transparent 1%, var(--lime) 2%, var(--lime) 96%, transparent 98%);
+	color: #0a0612;
+	padding: 0 0.3em;
+	font-weight: 700;
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+.marker-pink {
+	background: linear-gradient(100deg, transparent 1%, var(--pink) 2%, var(--pink) 96%, transparent 98%);
 }
 
 /* marquee */
@@ -156,6 +363,20 @@ body {
 }
 .marquee-paused:hover .marquee-track {
 	animation-play-state: paused;
+}
+
+/* kinetic lineup — gradient fill wipes in from the left on row hover */
+.lineup-fill {
+	clip-path: inset(0 100% 0 0);
+	transition: clip-path 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lineup-row:hover .lineup-fill {
+	clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+	.lineup-fill {
+		transition: none;
+	}
 }
 
 /* film grain overlay */

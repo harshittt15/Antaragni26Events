@@ -1,146 +1,223 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { eventsData } from "../../data/events";
+import { eventTheme, CAT_THEME } from "../../data/themes";
 import { Marquee } from "../../components/fx/Marquee";
 import { Reveal, RevealTitle } from "../../components/fx/Reveal";
+import { FloatingStickers } from "../../components/fx/Stickers";
+import { TiltCard } from "../../components/fx/TiltCard";
+import { PosterArt } from "../../components/fx/PosterArt";
 
-/* per-category gradient themes — Spotify-Wrapped energy */
-const CAT_THEME: Record<string, { a: string; b: string }> = {
-	"Performing Arts": { a: "#7c3aed", b: "#ff6ec7" },
-	"Literary Arts": { a: "#4dd8ff", b: "#7c3aed" },
-	"Media Arts": { a: "#ff8a3d", b: "#ff6ec7" },
-	"Visual Arts": { a: "#4dd8ff", b: "#c7f441" },
-	Personality: { a: "#ff6ec7", b: "#ff8a3d" },
-	Fashion: { a: "#ff6ec7", b: "#7c3aed" },
-	"Special Event": { a: "#c7f441", b: "#4dd8ff" },
+/* ----------------------------------------------------------------------------
+   Festival lineup reveal — categories are STAGES, each its own zone:
+   tinted atmosphere, huge zone typography, and a horizontal rail of
+   collectible posters you flick through like a crate of records.
+---------------------------------------------------------------------------- */
+
+const STAGES: Record<string, { stage: string; blurb: string }> = {
+	"Performing Arts": {
+		stage: "Performing Arts Stage",
+		blurb: "Dance, music and drama under the biggest lights on campus.",
+	},
+	"Literary Arts": {
+		stage: "Literary Arena",
+		blurb: "Words as weapons — debates, quizzes and poetry that cuts.",
+	},
+	"Media Arts": {
+		stage: "Media District",
+		blurb: "Lenses, frames and stories told at 24 frames a second.",
+	},
+	"Visual Arts": {
+		stage: "Visual District",
+		blurb: "Wet paint, loud walls and galleries that shout.",
+	},
+	Personality: {
+		stage: "Spotlight Stage",
+		blurb: "One mic, one runway, all eyes on you.",
+	},
+	Fashion: {
+		stage: "The Runway",
+		blurb: "Walk like thunder — India's boldest college fashion battle.",
+	},
+	"Special Event": {
+		stage: "After Dark Zone",
+		blurb: "The weird, the wonderful, the unmissable.",
+	},
 };
 
-const CATEGORIES = ["All", ...Array.from(new Set(eventsData.map((e) => e.category)))];
+const CATEGORIES = Array.from(new Set(eventsData.map((e) => e.category)));
 
 export default function EventsPage() {
-	const [active, setActive] = useState("All");
-
-	const visible =
-		active === "All"
-			? eventsData
-			: eventsData.filter((e) => e.category === active);
-
 	return (
-		<div className="pt-32">
+		<div className="pt-36">
 			{/* ------------------------------ HERO ------------------------------ */}
-			<section className="mx-auto max-w-6xl px-4 text-center">
+			<section className="relative mx-auto max-w-7xl overflow-hidden px-4 pb-10 md:px-8">
+				<FloatingStickers
+					items={[
+						{ name: "bolt", color: "var(--lime)", left: "80%", top: "6%", size: 64, rot: 10, depth: 0.8 },
+						{ name: "star", color: "var(--pink)", left: "62%", top: "48%", size: 52, rot: -12, depth: 0.6 },
+						{ name: "spiral", color: "var(--cyan)", left: "8%", top: "58%", size: 58, rot: 0, depth: 0.9, className: "spin-slow" },
+					]}
+				/>
+
 				<Reveal>
-					<p className="eyebrow mb-5">The main arena &middot; On campus</p>
+					<span className="tape mb-5 inline-block -rotate-2">
+						The main arena &middot; On campus
+					</span>
 				</Reveal>
 				<RevealTitle
 					as="h1"
-					text="PICK YOUR ARENA"
-					className="font-title text-5xl font-black leading-[1.02] md:text-8xl"
+					text="THE LINEUP"
+					className="font-poster text-[18vw] uppercase leading-[0.85] md:text-[11rem]"
 				/>
 				<Reveal delay={0.15}>
-					<p className="mx-auto mt-6 max-w-2xl text-foreground/70">
-						Twelve event verticals. Dozens of competitions. From street dance
-						to stand-up poetry, pick the stage where you belong and register
-						your act.
+					<p className="mt-6 max-w-xl text-foreground/70">
+						Seven stages. Forty-plus battles. Flick through each crate, find
+						your stage, and put your name on the bill.
 					</p>
+				</Reveal>
+
+				{/* stage jump rail — torn ticket stubs */}
+				<Reveal delay={0.2} className="mt-10 flex flex-wrap gap-3">
+					{CATEGORIES.map((cat, i) => {
+						const theme = CAT_THEME[cat] ?? { a: "#7c3aed", b: "#ff6ec7" };
+						return (
+							<a
+								key={cat}
+								href={`#stage-${i}`}
+								data-cursor-text="JUMP"
+								className="ticket px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform duration-200 hover:-translate-y-1"
+								style={{
+									color: theme.b,
+									transform: `rotate(${(i % 3) - 1}deg)`,
+								}}
+							>
+								{STAGES[cat]?.stage ?? cat}
+							</a>
+						);
+					})}
 				</Reveal>
 			</section>
 
-			{/* ---------------------------- FILTERS ----------------------------- */}
-			<div className="sticky top-20 z-20 mx-auto mt-12 flex max-w-full justify-start gap-2 overflow-x-auto px-4 pb-2 md:justify-center">
-				{CATEGORIES.map((cat) => (
-					<button
+			{/* ----------------------------- ZONES ------------------------------ */}
+			{CATEGORIES.map((cat, i) => {
+				const theme = CAT_THEME[cat] ?? { a: "#7c3aed", b: "#ff6ec7" };
+				const stage = STAGES[cat] ?? { stage: cat, blurb: "" };
+				const items = eventsData.filter((e) => e.category === cat);
+				return (
+					<section
 						key={cat}
-						onClick={() => setActive(cat)}
-						className={`shrink-0 rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
-							active === cat
-								? "text-[#0a0612]"
-								: "glass text-foreground/70 hover:text-foreground"
-						}`}
-						style={
-							active === cat ? { background: "var(--lime)" } : undefined
-						}
+						id={`stage-${i}`}
+						className="relative scroll-mt-24 overflow-hidden py-16"
 					>
-						{cat}
-					</button>
-				))}
-			</div>
+						{/* zone atmosphere — each stage has its own light */}
+						<div
+							className="pointer-events-none absolute inset-0"
+							style={{
+								background: `radial-gradient(90% 70% at ${i % 2 ? "85%" : "15%"} 20%, ${theme.a}1f 0%, transparent 60%), radial-gradient(70% 60% at ${i % 2 ? "10%" : "90%"} 90%, ${theme.b}17 0%, transparent 65%)`,
+							}}
+							aria-hidden
+						/>
+						<div
+							className="backdrop-word font-poster pointer-events-none absolute top-2 text-[9rem] uppercase md:text-[14rem]"
+							style={{ [i % 2 ? "right" : "left"]: "-0.5rem" }}
+							aria-hidden
+						>
+							{String(i + 1).padStart(2, "0")}
+						</div>
 
-			{/* ------------------------------ GRID ------------------------------ */}
-			<section className="mx-auto max-w-6xl px-4 py-14">
-				<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-					{visible.map((event, i) => {
-						const theme = CAT_THEME[event.category] ?? {
-							a: "#7c3aed",
-							b: "#ff6ec7",
-						};
-						return (
-							<Link
-								key={event.slug}
-								href={`/events/${event.slug}`}
-								data-cursor-text="OPEN"
-								className="glow-card group relative block h-96 overflow-hidden rounded-3xl border border-white/10"
-							>
-								<Image
-									src={event.imageUrl}
-									alt={event.title}
-									fill
-									sizes="(max-width: 640px) 100vw, 33vw"
-									className="object-cover opacity-70 transition-all duration-700 group-hover:scale-108 group-hover:opacity-85"
-								/>
-								<div
-									className="absolute inset-0 opacity-55 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-40"
-									style={{
-										background: `linear-gradient(160deg, ${theme.a}, ${theme.b})`,
-									}}
-								/>
-								<div className="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent" />
-
-								<span className="font-title absolute right-5 top-4 text-5xl font-black text-white/20">
-									{String(i + 1).padStart(2, "0")}
+						<div className="relative mx-auto max-w-7xl px-4 md:px-8">
+							{/* zone header */}
+							<Reveal className={i % 2 ? "md:ml-auto md:w-fit md:text-right" : ""}>
+								<span
+									className="text-[10px] font-bold uppercase tracking-[0.35em]"
+									style={{ color: theme.b }}
+								>
+									Stage {String(i + 1).padStart(2, "0")} &middot;{" "}
+									{items.length} {items.length === 1 ? "event" : "events"}
 								</span>
+								<h2
+									className="font-poster mt-1 text-5xl uppercase leading-[0.9] md:text-8xl"
+									style={{
+										background: `linear-gradient(94deg, ${theme.a}, ${theme.b})`,
+										WebkitBackgroundClip: "text",
+										backgroundClip: "text",
+										color: "transparent",
+									}}
+								>
+									{stage.stage}
+								</h2>
+								{stage.blurb && (
+									<p className={`mt-2 max-w-md text-sm text-foreground/60 ${i % 2 ? "md:ml-auto" : ""}`}>
+										{stage.blurb}
+									</p>
+								)}
+							</Reveal>
 
-								<div className="absolute bottom-0 w-full p-6">
-									<span
-										className="chip mb-3 !text-[10px]"
-										style={{ color: theme.b }}
-									>
-										{event.category}
-									</span>
-									<h3 className="font-title text-3xl font-black leading-tight">
-										{event.title}
-									</h3>
-									<span className="mt-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-foreground/60 transition-colors duration-300 group-hover:text-[var(--lime)]">
-										View details
-										<span className="transition-transform duration-300 group-hover:translate-x-2">
-											&rarr;
+							{/* the crate — horizontal poster rail */}
+							<Reveal delay={0.1}>
+								<div className="rail" data-cursor-text="DRAG">
+									{items.map((e, j) => {
+										const t = eventTheme(e.slug, e.category);
+										return (
+											<Link
+												key={e.slug}
+												href={`/events/${e.slug}`}
+												data-cursor-text="OPEN"
+												className="group block"
+												style={{ transform: `rotate(${j % 2 ? 1.4 : -1.4}deg)` }}
+											>
+												<TiltCard className="h-[300px] w-[228px] md:h-[356px] md:w-[270px]">
+													<div className="h-full w-full overflow-hidden border-2 border-white/15 shadow-[8px_8px_0_rgba(0,0,0,0.5)] transition-shadow duration-300 group-hover:shadow-[10px_10px_0_rgba(0,0,0,0.6)]">
+														<PosterArt
+															slug={e.slug}
+															title={e.title}
+															a={t.a}
+															b={t.b}
+															motif={t.motif}
+															index={j}
+															className="h-full w-full"
+														/>
+													</div>
+												</TiltCard>
+											</Link>
+										);
+									})}
+									{/* end-of-crate cap */}
+									<div className="flex w-40 items-center justify-center">
+										<span
+											className="font-poster rotate-90 whitespace-nowrap text-2xl uppercase tracking-widest text-foreground/25"
+										>
+											{stage.stage} &rarr;
 										</span>
-									</span>
+									</div>
 								</div>
-							</Link>
-						);
-					})}
-				</div>
-			</section>
+							</Reveal>
+						</div>
+					</section>
+				);
+			})}
 
 			{/* --------------------------- CTA STRIP ---------------------------- */}
-			<section className="py-10">
-				<Marquee duration={26} className="border-y border-white/10 py-6">
-					{Array.from({ length: 8 }).map((_, i) => (
-						<Link
-							key={i}
-							href="/dashboard"
-							className="font-title mx-8 flex items-center gap-8 text-2xl font-bold uppercase"
-						>
-							<span className="text-gradient-pink">Ready to compete?</span>
-							<span className="text-stroke">Register now</span>
-							<span style={{ color: "var(--lime)" }}>&#10022;</span>
-						</Link>
-					))}
-				</Marquee>
+			<section className="py-12">
+				<div className="-rotate-1 scale-[1.01]" style={{ background: "var(--pink)" }}>
+					<Marquee duration={26} className="py-5">
+						{Array.from({ length: 8 }).map((_, i) => (
+							<Link
+								key={i}
+								href="/dashboard"
+								className="font-poster mx-8 flex items-center gap-8 text-3xl uppercase text-[#0a0612]"
+							>
+								<span>Ready to compete?</span>
+								<span className="underline decoration-4 underline-offset-4">
+									Register now
+								</span>
+								<span>&#10022;</span>
+							</Link>
+						))}
+					</Marquee>
+				</div>
 			</section>
 		</div>
 	);

@@ -6,7 +6,8 @@ import { Loader } from "@repo/ui/loader";
 import SessionLoader from "./SessionLoader";
 import Header from "./Header";
 import Footer from "./Footer";
-import { Aurora } from "./fx/Aurora";
+import { CharGrid } from "./fx/CharGrid";
+import { Atmosphere } from "./fx/Atmosphere";
 
 export function ClientComponent({ children }: { children: ReactNode }) {
 	const { initialAnimation, loading } = useStore();
@@ -18,7 +19,8 @@ export function ClientComponent({ children }: { children: ReactNode }) {
 			{initialAnimation && <Loader type={2} />}
 			{showSessionLoader && <SessionLoader />}
 			<div className="fixed inset-0 pointer-events-none">
-				<Aurora />
+				<Atmosphere />
+				<CharGrid />
 			</div>
 			<div className="grain-overlay" />
 			<div className="relative z-10">

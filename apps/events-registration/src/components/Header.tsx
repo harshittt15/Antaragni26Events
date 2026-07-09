@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useStore } from "@repo/store";
 import { firebaseGoogleSignIn, firebaseLogout } from "@repo/firebase";
+import { Magnetic } from "./fx/Magnetic";
 
 const navLinks = [
 	{ href: "/", label: "Home" },
@@ -12,6 +13,8 @@ const navLinks = [
 	{ href: "/roadtrips", label: "Roadtrips" },
 ];
 
+/* Festival nav: rotated sticker wordmark + wristband link strip +
+   backstage-pass auth. No glass, no pills, hard shadows only. */
 const Header = () => {
 	const pathname = usePathname();
 	const { user, setUser, setLoading } = useStore();
@@ -66,139 +69,169 @@ const Header = () => {
 
 	return (
 		<>
-			<header className="fixed left-0 right-0 top-0 z-40 px-4 pt-4">
-				<nav
-					className={`mx-auto flex max-w-6xl items-center justify-between rounded-full px-5 py-2.5 transition-all duration-500 ${
-						scrolled || isMobileMenuOpen ? "glass shadow-2xl" : "bg-transparent"
-					}`}
-				>
-					{/* Wordmark */}
-					<Link href="/" className="font-title text-lg font-bold tracking-tight">
-						ANTARAGNI<span style={{ color: "var(--lime)" }}>&rsquo;26</span>
-					</Link>
-
-					{/* Desktop links */}
-					<div className="hidden items-center gap-1 md:!flex">
-						{navLinks.map((link) => {
-							const isActive = pathname === link.href;
-							return (
-								<Link
-									key={link.href}
-									href={link.href}
-									className={`rounded-full px-5 py-2 text-sm font-semibold uppercase tracking-widest transition-colors duration-300 ${
-										isActive
-											? "bg-white/10 text-[var(--lime)]"
-											: "text-foreground/70 hover:text-foreground"
-									}`}
-								>
-									{link.label}
-								</Link>
-							);
-						})}
-					</div>
-
-					{/* Right — auth */}
-					<div className="flex items-center gap-3">
-						{user ? (
-							<div className="relative hidden md:!block" ref={profileMenuRef}>
-								<button
-									onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-									className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold"
-								>
-									<span
-										className="h-2 w-2 rounded-full"
-										style={{ background: "var(--lime)" }}
-									/>
-									<span className="max-w-32 truncate">
-										{user.user.displayName || "Profile"}
-									</span>
-									<svg
-										width="14"
-										height="14"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										strokeWidth="2.5"
-										strokeLinecap="round"
-										className={`transition-transform duration-300 ${isProfileMenuOpen ? "rotate-180" : ""}`}
-									>
-										<path d="m6 9 6 6 6-6" />
-									</svg>
-								</button>
-								{isProfileMenuOpen && (
-									<div className="glass absolute right-0 top-full mt-3 w-60 overflow-hidden rounded-2xl shadow-2xl">
-										<div className="border-b border-white/10 px-5 py-4">
-											<p className="truncate text-sm font-bold">
-												{user.user.displayName || "Welcome"}
-											</p>
-											<p className="truncate text-xs text-foreground/50">
-												{user.user.email}
-											</p>
-										</div>
-										<div className="p-2">
-											<Link
-												href={user.details ? "/dashboard" : "/register"}
-												className="block rounded-xl px-4 py-2.5 text-sm font-semibold hover:bg-white/10"
-											>
-												{user.details ? "Dashboard" : "Complete Registration"}
-											</Link>
-											<button
-												onClick={handleSignOut}
-												className="block w-full rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-[var(--pink)] hover:bg-white/10"
-											>
-												Sign out
-											</button>
-										</div>
-									</div>
-								)}
-							</div>
-						) : (
-							<button
-								onClick={handleSignIn}
-								className="btn-lime hidden !px-6 !py-2.5 !text-xs md:!inline-flex"
-							>
-								Sign in
-							</button>
-						)}
-
-						{/* Mobile burger */}
-						<button
-							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-							className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:!hidden"
-							aria-label="Menu"
+			<header className="fixed left-0 right-0 top-0 z-40 px-4 pt-4 md:px-6">
+				<nav className="flex items-start justify-between">
+					{/* Wordmark — rotated lime sticker */}
+					<Magnetic strength={0.2}>
+						<Link
+							href="/"
+							className={`font-title inline-block -rotate-2 border-2 border-[#0a0612] px-3.5 py-2 text-base font-black tracking-tight transition-shadow duration-300 ${
+								scrolled ? "shadow-[4px_4px_0_rgba(0,0,0,0.55)]" : "shadow-[5px_5px_0_var(--violet)]"
+							}`}
+							style={{ background: "var(--lime)", color: "#0a0612", borderRadius: 8 }}
 						>
-							<span
-								className={`h-0.5 w-6 bg-foreground transition-transform duration-300 ${isMobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
-							/>
-							<span
-								className={`h-0.5 w-6 bg-foreground transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
-							/>
-							<span
-								className={`h-0.5 w-6 bg-foreground transition-transform duration-300 ${isMobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
-							/>
-						</button>
+							ANTARAGNI&rsquo;26
+						</Link>
+					</Magnetic>
+
+					{/* Desktop — wristband strip */}
+					<div className="hidden items-center md:!flex">
+						<div
+							className="flex rotate-1 items-center border-2 border-white/15 bg-[var(--ink)] px-1.5 py-1 shadow-[5px_5px_0_rgba(0,0,0,0.5)]"
+							style={{ borderRadius: 8 }}
+						>
+							{/* wristband punch hole */}
+							<span className="mx-2 h-3 w-3 rounded-full border-2 border-white/25 bg-background" />
+							{navLinks.map((link) => {
+								const isActive = pathname === link.href;
+								return (
+									<Link
+										key={link.href}
+										href={link.href}
+										className={`px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200 ${
+											isActive
+												? "-rotate-1 bg-[var(--pink)] text-[#0a0612]"
+												: "text-foreground/75 hover:-rotate-1 hover:text-[var(--lime)]"
+										}`}
+										style={isActive ? { borderRadius: 4 } : undefined}
+									>
+										{link.label}
+									</Link>
+								);
+							})}
+							<span className="mx-2 h-3 w-3 rounded-full border-2 border-white/25 bg-background" />
+						</div>
+
+						{/* Auth — backstage pass */}
+						<div className="ml-4">
+							{user ? (
+								<div className="relative" ref={profileMenuRef}>
+									<button
+										onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
+										className="flex rotate-1 items-center gap-2 border-2 border-white/15 bg-[var(--ink)] px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0_rgba(0,0,0,0.5)]"
+										style={{ borderRadius: 8 }}
+									>
+										<span
+											className="h-2 w-2 rounded-full"
+											style={{ background: "var(--lime)" }}
+										/>
+										<span className="max-w-32 truncate normal-case tracking-normal">
+											{user.user.displayName || "Profile"}
+										</span>
+										<svg
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											strokeWidth="3"
+											strokeLinecap="round"
+											className={`transition-transform duration-300 ${isProfileMenuOpen ? "rotate-180" : ""}`}
+										>
+											<path d="m6 9 6 6 6-6" />
+										</svg>
+									</button>
+									{isProfileMenuOpen && (
+										<div
+											className="absolute right-0 top-full mt-3 w-64 -rotate-1 overflow-hidden border-2 border-white/15 bg-[var(--ink)] shadow-[6px_6px_0_rgba(0,0,0,0.55)]"
+											style={{ borderRadius: 10 }}
+										>
+											<div
+												className="border-b-2 border-dashed border-white/15 px-5 py-4"
+												style={{ background: "rgba(199,244,65,0.06)" }}
+											>
+												<p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">
+													Backstage pass
+												</p>
+												<p className="mt-1 truncate text-sm font-bold">
+													{user.user.displayName || "Welcome"}
+												</p>
+												<p className="truncate text-xs text-foreground/50">
+													{user.user.email}
+												</p>
+											</div>
+											<div className="p-2">
+												<Link
+													href={user.details ? "/dashboard" : "/register"}
+													className="block px-4 py-2.5 text-sm font-bold hover:bg-white/10"
+												>
+													{user.details ? "Dashboard" : "Complete Registration"}
+												</Link>
+												<button
+													onClick={handleSignOut}
+													className="block w-full px-4 py-2.5 text-left text-sm font-bold text-[var(--pink)] hover:bg-white/10"
+												>
+													Sign out
+												</button>
+											</div>
+										</div>
+									)}
+								</div>
+							) : (
+								<Magnetic strength={0.25}>
+									<button
+										onClick={handleSignIn}
+										className="btn-lime !px-5 !py-2 !text-xs"
+									>
+										Sign in
+									</button>
+								</Magnetic>
+							)}
+						</div>
 					</div>
+
+					{/* Mobile burger — sticker square */}
+					<button
+						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+						className="flex h-11 w-11 rotate-2 flex-col items-center justify-center gap-1.5 border-2 border-white/15 bg-[var(--ink)] shadow-[4px_4px_0_rgba(0,0,0,0.5)] md:!hidden"
+						style={{ borderRadius: 8 }}
+						aria-label="Menu"
+					>
+						<span
+							className={`h-0.5 w-5 bg-foreground transition-transform duration-300 ${isMobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
+						/>
+						<span
+							className={`h-0.5 w-5 bg-foreground transition-opacity duration-300 ${isMobileMenuOpen ? "opacity-0" : ""}`}
+						/>
+						<span
+							className={`h-0.5 w-5 bg-foreground transition-transform duration-300 ${isMobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
+						/>
+					</button>
 				</nav>
 			</header>
 
-			{/* Mobile overlay */}
+			{/* Mobile overlay — solid poster wall */}
 			<div
-				className={`fixed inset-0 z-30 flex flex-col justify-between bg-background/95 px-8 pb-10 pt-32 backdrop-blur-xl transition-all duration-500 md:!hidden ${
+				className={`fixed inset-0 z-30 flex flex-col justify-between bg-[#0a0612] px-8 pb-10 pt-32 transition-all duration-500 md:!hidden ${
 					isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
 				}`}
 			>
-				<div className="flex flex-col gap-2">
+				<div className="halftone pointer-events-none absolute inset-0 opacity-30" />
+				<div className="relative flex flex-col gap-4">
 					{navLinks.map((link, i) => (
 						<Link
 							key={link.href}
 							href={link.href}
 							onClick={() => setIsMobileMenuOpen(false)}
-							className={`font-title text-4xl font-bold transition-all duration-500 ${
+							className={`font-poster text-6xl uppercase transition-all duration-500 ${
 								isMobileMenuOpen
 									? "translate-y-0 opacity-100"
 									: "translate-y-6 opacity-0"
-							} ${pathname === link.href ? "text-gradient" : ""}`}
-							style={{ transitionDelay: `${100 + i * 80}ms` }}
+							} ${pathname === link.href ? "text-gradient-live" : ""}`}
+							style={{
+								transitionDelay: `${100 + i * 80}ms`,
+								transform: `rotate(${i % 2 ? 1 : -1}deg)`,
+							}}
 						>
 							{link.label}
 						</Link>
@@ -207,7 +240,7 @@ const Header = () => {
 						<Link
 							href={user.details ? "/dashboard" : "/register"}
 							onClick={() => setIsMobileMenuOpen(false)}
-							className={`font-title text-4xl font-bold transition-all duration-500 ${
+							className={`font-poster text-6xl uppercase transition-all duration-500 ${
 								isMobileMenuOpen
 									? "translate-y-0 opacity-100"
 									: "translate-y-6 opacity-0"
@@ -218,7 +251,7 @@ const Header = () => {
 						</Link>
 					)}
 				</div>
-				<div>
+				<div className="relative">
 					{user ? (
 						<button onClick={handleSignOut} className="btn-ghost w-full">
 							Sign out

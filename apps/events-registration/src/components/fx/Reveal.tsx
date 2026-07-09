@@ -27,7 +27,9 @@ export function Reveal({
 
 	useGSAP(
 		() => {
-			if (!ref.current) return;
+			/* hidden tab at mount → rAF is paused and a from-tween would strand
+			   children invisible; skip the entrance entirely */
+			if (!ref.current || document.hidden) return;
 			gsap.from(ref.current.children, {
 				opacity: 0,
 				y,
@@ -62,7 +64,7 @@ export function RevealTitle({
 
 	useGSAP(
 		() => {
-			if (!ref.current) return;
+			if (!ref.current || document.hidden) return;
 			gsap.from(ref.current.querySelectorAll(".rw"), {
 				yPercent: 110,
 				stagger: 0.07,
