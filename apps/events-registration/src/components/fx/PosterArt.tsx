@@ -586,7 +586,7 @@ export function PosterArt({
 					<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
 					<feColorMatrix type="saturate" values="0" />
 					<feComponentTransfer>
-						<feFuncA type="linear" slope="0.2" />
+						<feFuncA type="linear" slope="0.27" />
 					</feComponentTransfer>
 				</filter>
 				<clipPath id={`${uid}-clip`}>
@@ -595,8 +595,8 @@ export function PosterArt({
 			</defs>
 
 			<g clipPath={`url(#${uid}-clip)`}>
-				{/* base */}
-				<rect width={W} height={H} fill="#0d0718" />
+				{/* base — rich printed stock, not digital black */}
+				<rect width={W} height={H} fill="#17101f" />
 				<rect width={W} height={H} fill={`url(#${uid}-glow)`} />
 
 				{/* the scene */}

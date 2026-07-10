@@ -12,11 +12,12 @@ import gsap from "gsap";
 ---------------------------------------------------------------------------- */
 
 const BLOBS = [
-	{ x: "12%", y: "8%", size: 560, from: "rgba(124,58,237,0.34)", depth: 0.5, dur: 34 },
-	{ x: "70%", y: "16%", size: 480, from: "rgba(255,110,199,0.2)", depth: 0.9, dur: 42 },
-	{ x: "48%", y: "68%", size: 640, from: "rgba(37,20,73,0.55)", depth: 0.3, dur: 38 },
-	{ x: "84%", y: "72%", size: 420, from: "rgba(77,216,255,0.13)", depth: 1.1, dur: 30 },
-	{ x: "4%", y: "62%", size: 380, from: "rgba(225,29,72,0.14)", depth: 0.7, dur: 46 },
+	{ x: "12%", y: "8%", size: 560, from: "rgba(130,72,240,0.3)", depth: 0.5, dur: 34 },
+	{ x: "70%", y: "16%", size: 480, from: "rgba(255,110,199,0.17)", depth: 0.9, dur: 42 },
+	{ x: "48%", y: "68%", size: 660, from: "rgba(52,30,88,0.5)", depth: 0.3, dur: 38 },
+	{ x: "86%", y: "70%", size: 440, from: "rgba(255,138,61,0.1)", depth: 1.1, dur: 30 },
+	{ x: "4%", y: "62%", size: 400, from: "rgba(239,71,111,0.13)", depth: 0.7, dur: 46 },
+	{ x: "60%", y: "94%", size: 520, from: "rgba(86,214,240,0.08)", depth: 0.6, dur: 40 },
 ];
 
 function Dust() {
@@ -131,12 +132,20 @@ export function Atmosphere() {
 
 	return (
 		<div ref={wrapRef} className="absolute inset-0 overflow-hidden" aria-hidden>
-			{/* Layer 1 — deep atmospheric base, never pure black */}
+			{/* Layer 1 — deep atmospheric base, rich printed-poster dark */}
 			<div
 				className="absolute inset-0"
 				style={{
 					background:
-						"radial-gradient(120% 90% at 50% 0%, #1a0f33 0%, #120a24 40%, #0c0718 78%, #0a0612 100%)",
+						"radial-gradient(125% 95% at 50% -5%, #2a1a42 0%, #201436 34%, #191024 68%, #140d1e 100%)",
+				}}
+			/>
+			{/* warm floor glow — festival-hall light pooling at the bottom */}
+			<div
+				className="absolute inset-x-0 bottom-0 h-1/2"
+				style={{
+					background:
+						"radial-gradient(80% 100% at 50% 100%, rgba(255,138,61,0.06), transparent 70%)",
 				}}
 			/>
 
