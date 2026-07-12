@@ -11,7 +11,6 @@ import { eventTheme } from "../../../data/themes";
 import { Reveal, RevealTitle } from "../../../components/fx/Reveal";
 import { Marquee } from "../../../components/fx/Marquee";
 import { PosterArt } from "../../../components/fx/PosterArt";
-import { FloatingStickers } from "../../../components/fx/Stickers";
 
 const IndividualEventPage = () => {
 	const params = useParams<{ slug: string }>();
@@ -66,14 +65,6 @@ const IndividualEventPage = () => {
 						}}
 						aria-hidden
 					/>
-					<FloatingStickers
-						items={[
-							{ name: "star", color: theme.b, left: "12%", top: "26%", size: 52, rot: -10, depth: 0.7 },
-							{ name: "bolt", color: theme.a, left: "84%", top: "20%", size: 46, rot: 12, depth: 0.9 },
-							{ name: "spiral", color: theme.b, left: "78%", top: "68%", size: 54, rot: 0, depth: 0.5, className: "spin-slow" },
-						]}
-					/>
-
 					<Reveal className="relative">
 						<Link
 							href="/events"
@@ -121,7 +112,7 @@ const IndividualEventPage = () => {
 
 				{/* gradient marquee divider */}
 				<div
-					className="mb-16 -rotate-1 scale-[1.01]"
+					className="mb-16"
 					style={{
 						background: `linear-gradient(90deg, ${theme.a}, ${theme.b})`,
 					}}

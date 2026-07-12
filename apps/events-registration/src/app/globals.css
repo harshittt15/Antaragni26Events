@@ -101,13 +101,6 @@ body {
 	color: transparent;
 }
 
-.text-gradient-pink {
-	background: linear-gradient(92deg, var(--pink) 0%, var(--orange) 60%, var(--lime) 120%);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-}
-
 .text-stroke {
 	-webkit-text-stroke: 1.5px rgba(246, 241, 234, 0.4);
 	color: transparent;
@@ -118,76 +111,63 @@ body {
 	color: transparent;
 }
 
-/* .glass is DEAD as glassmorphism — every legacy usage now renders as a
-   solid screen-printed ink panel with a hard offset shadow */
+/* solid ink panel — quiet 1px border, soft elevation */
 .glass {
 	background: var(--ink);
-	border: 2px solid rgba(244, 241, 250, 0.16);
-	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
+	border: 1px solid rgba(244, 241, 250, 0.1);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 }
 
 .chip {
 	@apply inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.2em];
 	background: var(--ink);
-	border: 1.5px solid currentColor;
-	border-radius: 4px;
-	transform: rotate(-1deg);
+	border: 1px solid currentColor;
+	border-radius: 999px;
 }
 
-/* sticker buttons — solid ink, hard shadow, slight tilt; no glow, no blur */
+/* buttons — bold color, clean geometry, soft lift on hover */
 .btn-festival {
-	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-200;
+	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-[transform,box-shadow] duration-200;
 	background: linear-gradient(92deg, var(--violet), var(--pink));
 	color: #fff;
-	border: 2px solid #0a0612;
-	border-radius: 10px;
-	box-shadow: 5px 5px 0 var(--lime);
-	transform: rotate(-1.2deg);
+	border-radius: 12px;
 }
 .btn-festival:hover {
-	transform: rotate(0.5deg) translate(-2px, -2px);
-	box-shadow: 7px 7px 0 var(--lime);
+	transform: translateY(-2px);
+	box-shadow: 0 12px 32px rgba(255, 110, 199, 0.3);
 }
 
 .btn-lime {
-	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-transform duration-200;
+	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-[transform,box-shadow] duration-200;
 	background: var(--lime);
 	color: #0a0612;
-	border: 2px solid #0a0612;
-	border-radius: 10px;
-	box-shadow: 5px 5px 0 var(--pink);
-	transform: rotate(1deg);
+	border-radius: 12px;
 }
 .btn-lime:hover {
-	transform: rotate(-0.5deg) translate(-2px, -2px);
-	box-shadow: 7px 7px 0 var(--pink);
+	transform: translateY(-2px);
+	box-shadow: 0 12px 32px rgba(199, 244, 65, 0.3);
 }
 
 .btn-ghost {
 	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-all duration-200;
-	border: 2px dashed rgba(244, 241, 250, 0.4);
-	border-radius: 10px;
+	border: 1px solid rgba(244, 241, 250, 0.25);
+	border-radius: 12px;
 	color: var(--color-foreground);
 }
 .btn-ghost:hover {
 	border-color: var(--lime);
-	border-style: solid;
 	color: var(--lime);
-	box-shadow: 4px 4px 0 rgba(199, 244, 65, 0.35);
-	transform: translate(-1px, -1px);
+	transform: translateY(-2px);
 }
 
-/* ============ POSTER TOOLKIT ============ */
+/* ============ LABEL / PANEL TOOLKIT ============ */
 
-/* masking-tape strip */
+/* accent label pill — bold color, clean geometry */
 .tape {
-	@apply inline-block px-5 py-1.5 text-xs font-bold uppercase tracking-[0.25em];
+	@apply inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em];
 	background: var(--lime);
 	color: #0a0612;
-	clip-path: polygon(
-		2% 0%, 98% 4%, 100% 32%, 99% 68%, 100% 96%, 96% 100%,
-		3% 98%, 0% 70%, 1% 30%
-	);
+	border-radius: 999px;
 }
 .tape-pink {
 	background: var(--pink);
@@ -196,27 +176,18 @@ body {
 	background: var(--cyan);
 }
 
-/* ticket stub — punched notches on the sides */
+/* quiet panel — used for list rails and info blocks */
 .ticket {
 	position: relative;
 	background: var(--ink);
-	border: 2px solid rgba(244, 241, 250, 0.18);
-	box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.5);
-	mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #fff) left / 51% 100% no-repeat,
-		radial-gradient(circle 9px at 100% 50%, transparent 98%, #fff) right / 50% 100% no-repeat;
-	-webkit-mask: radial-gradient(circle 9px at 0 50%, transparent 98%, #fff) left / 51% 100% no-repeat,
-		radial-gradient(circle 9px at 100% 50%, transparent 98%, #fff) right / 50% 100% no-repeat;
+	border: 1px solid rgba(244, 241, 250, 0.1);
+	border-radius: 14px;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* halftone dot texture */
-.halftone {
-	background-image: radial-gradient(rgba(244, 241, 250, 0.25) 1.2px, transparent 1.3px);
-	background-size: 10px 10px;
-}
-
-/* huge repeated backdrop word — poster wallpaper type */
+/* huge repeated backdrop word — whisper-quiet wallpaper type */
 .backdrop-word {
-	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.08);
+	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.05);
 	color: transparent;
 	user-select: none;
 	pointer-events: none;
@@ -246,23 +217,7 @@ body {
 	animation: gradient-sweep 9s ease-in-out infinite;
 }
 
-/* slow float for stickers / decorations */
-@keyframes float-y {
-	0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
-	50% { transform: translateY(-14px) rotate(calc(var(--rot, 0deg) + 3deg)); }
-}
-.float-slow {
-	animation: float-y 6s ease-in-out infinite;
-}
-@keyframes spin-slow {
-	to { transform: rotate(360deg); }
-}
-.spin-slow {
-	animation: spin-slow 22s linear infinite;
-}
 @media (prefers-reduced-motion: reduce) {
-	.float-slow,
-	.spin-slow,
 	.text-gradient-live {
 		animation: none;
 	}
@@ -319,21 +274,13 @@ body {
 	animation: gradient-sweep 13s ease-in-out infinite;
 }
 
-/* the stacked copies behind the hero word */
+/* the hero word — one confident layer, no echoes */
 .hero-word {
 	white-space: nowrap;
 	letter-spacing: -0.02em;
 	line-height: 0.9;
 	transform: scaleY(1.12);
 	transform-origin: bottom left;
-}
-.hero-word-echo {
-	-webkit-text-stroke: 1.5px rgba(199, 244, 65, 0.5);
-	color: transparent;
-}
-.hero-word-ink {
-	color: #0a0612;
-	-webkit-text-stroke: 1px rgba(244, 241, 250, 0.18);
 }
 
 /* ============ POSTER RAIL (horizontal stage scroll) ============ */

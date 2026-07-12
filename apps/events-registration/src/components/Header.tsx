@@ -13,8 +13,7 @@ const navLinks = [
 	{ href: "/roadtrips", label: "Roadtrips" },
 ];
 
-/* Festival nav: rotated sticker wordmark + wristband link strip +
-   backstage-pass auth. No glass, no pills, hard shadows only. */
+/* Festival nav: lime wordmark badge + clean pill link strip + auth. */
 const Header = () => {
 	const pathname = usePathname();
 	const { user, setUser, setLoading } = useStore();
@@ -71,45 +70,38 @@ const Header = () => {
 		<>
 			<header className="fixed left-0 right-0 top-0 z-40 px-4 pt-4 md:px-6">
 				<nav className="flex items-start justify-between">
-					{/* Wordmark — rotated lime sticker */}
+					{/* Wordmark — lime badge */}
 					<Magnetic strength={0.2}>
 						<Link
 							href="/"
-							className={`font-title inline-block -rotate-2 border-2 border-[#0a0612] px-3.5 py-2 text-base font-black tracking-tight transition-shadow duration-300 ${
-								scrolled ? "shadow-[4px_4px_0_rgba(0,0,0,0.55)]" : "shadow-[5px_5px_0_var(--violet)]"
+							className={`font-title inline-block px-3.5 py-2 text-base font-black tracking-tight transition-shadow duration-300 ${
+								scrolled ? "shadow-lg shadow-black/40" : ""
 							}`}
-							style={{ background: "var(--lime)", color: "#0a0612", borderRadius: 8 }}
+							style={{ background: "var(--lime)", color: "#0a0612", borderRadius: 12 }}
 						>
 							ANTARAGNI&rsquo;26
 						</Link>
 					</Magnetic>
 
-					{/* Desktop — wristband strip */}
+					{/* Desktop — link strip */}
 					<div className="hidden items-center md:!flex">
-						<div
-							className="flex rotate-1 items-center border-2 border-white/15 bg-[var(--ink)] px-1.5 py-1 shadow-[5px_5px_0_rgba(0,0,0,0.5)]"
-							style={{ borderRadius: 8 }}
-						>
-							{/* wristband punch hole */}
-							<span className="mx-2 h-3 w-3 rounded-full border-2 border-white/25 bg-background" />
+						<div className="flex items-center rounded-full border border-white/10 bg-[var(--ink)] p-1.5 shadow-lg shadow-black/30">
 							{navLinks.map((link) => {
 								const isActive = pathname === link.href;
 								return (
 									<Link
 										key={link.href}
 										href={link.href}
-										className={`px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] transition-all duration-200 ${
+										className={`rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${
 											isActive
-												? "-rotate-1 bg-[var(--pink)] text-[#0a0612]"
-												: "text-foreground/75 hover:-rotate-1 hover:text-[var(--lime)]"
+												? "bg-[var(--pink)] text-[#0a0612]"
+												: "text-foreground/75 hover:text-[var(--lime)]"
 										}`}
-										style={isActive ? { borderRadius: 4 } : undefined}
 									>
 										{link.label}
 									</Link>
 								);
 							})}
-							<span className="mx-2 h-3 w-3 rounded-full border-2 border-white/25 bg-background" />
 						</div>
 
 						{/* Auth — backstage pass */}
@@ -118,8 +110,7 @@ const Header = () => {
 								<div className="relative" ref={profileMenuRef}>
 									<button
 										onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-										className="flex rotate-1 items-center gap-2 border-2 border-white/15 bg-[var(--ink)] px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-[4px_4px_0_rgba(0,0,0,0.5)]"
-										style={{ borderRadius: 8 }}
+										className="flex items-center gap-2 rounded-full border border-white/10 bg-[var(--ink)] px-4 py-2 text-xs font-bold uppercase tracking-widest shadow-lg shadow-black/30"
 									>
 										<span
 											className="h-2 w-2 rounded-full"
@@ -143,11 +134,10 @@ const Header = () => {
 									</button>
 									{isProfileMenuOpen && (
 										<div
-											className="absolute right-0 top-full mt-3 w-64 -rotate-1 overflow-hidden border-2 border-white/15 bg-[var(--ink)] shadow-[6px_6px_0_rgba(0,0,0,0.55)]"
-											style={{ borderRadius: 10 }}
+											className="absolute right-0 top-full mt-3 w-64 overflow-hidden rounded-2xl border border-white/10 bg-[var(--ink)] shadow-2xl shadow-black/50"
 										>
 											<div
-												className="border-b-2 border-dashed border-white/15 px-5 py-4"
+												className="border-b border-white/10 px-5 py-4"
 												style={{ background: "rgba(199,244,65,0.06)" }}
 											>
 												<p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">
@@ -190,11 +180,10 @@ const Header = () => {
 						</div>
 					</div>
 
-					{/* Mobile burger — sticker square */}
+					{/* Mobile burger */}
 					<button
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-						className="flex h-11 w-11 rotate-2 flex-col items-center justify-center gap-1.5 border-2 border-white/15 bg-[var(--ink)] shadow-[4px_4px_0_rgba(0,0,0,0.5)] md:!hidden"
-						style={{ borderRadius: 8 }}
+						className="flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-[var(--ink)] shadow-lg shadow-black/30 md:!hidden"
 						aria-label="Menu"
 					>
 						<span
@@ -216,7 +205,6 @@ const Header = () => {
 					isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
 				}`}
 			>
-				<div className="halftone pointer-events-none absolute inset-0 opacity-30" />
 				<div className="relative flex flex-col gap-4">
 					{navLinks.map((link, i) => (
 						<Link
@@ -228,10 +216,7 @@ const Header = () => {
 									? "translate-y-0 opacity-100"
 									: "translate-y-6 opacity-0"
 							} ${pathname === link.href ? "text-gradient-live" : ""}`}
-							style={{
-								transitionDelay: `${100 + i * 80}ms`,
-								transform: `rotate(${i % 2 ? 1 : -1}deg)`,
-							}}
+							style={{ transitionDelay: `${100 + i * 80}ms` }}
 						>
 							{link.label}
 						</Link>

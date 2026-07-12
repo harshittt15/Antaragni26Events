@@ -98,8 +98,8 @@ export function EventDetails({
 	const SectionHead = ({ id, label }: { id: string; label: string }) => (
 		<Reveal>
 			<span
-				className="tape mb-4 inline-block -rotate-1"
-				style={{ background: theme.b, color: "#0a0612" }}
+				className="eyebrow mb-4 inline-block"
+				style={{ color: theme.b }}
 			>
 				{String(NAV.findIndex((n) => n.id === id) + 1).padStart(2, "0")} /{" "}
 				{theme.tag}
@@ -168,7 +168,7 @@ export function EventDetails({
 													data-cursor-text="GO"
 													className="text-left text-sm font-bold text-foreground/75 transition-colors hover:text-[var(--lime)]"
 												>
-													&#10022; {comp.name}
+													{comp.name}
 												</button>
 											</li>
 										))}

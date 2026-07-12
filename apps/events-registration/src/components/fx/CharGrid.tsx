@@ -124,7 +124,8 @@ export function CharGrid() {
 
 		function tick(now: number) {
 			raf = requestAnimationFrame(tick);
-			if (document.hidden || !ctx || !base) return;
+			if (document.hidden || !ctx || !base || !base.width || !base.height)
+				return;
 
 			for (const d of drifters) {
 				d.t += 1;
@@ -162,9 +163,12 @@ export function CharGrid() {
 
 		build();
 		/* paint the resting grid immediately — no blank first frame,
-		   and hidden tabs still show the texture */
-		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		ctx.drawImage(base!, 0, 0);
+		   and hidden tabs still show the texture (skip while zero-sized:
+		   drawImage throws on an empty source canvas) */
+		if (base!.width && base!.height) {
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+			ctx.drawImage(base!, 0, 0);
+		}
 
 		if (!reduced) {
 			window.addEventListener("pointermove", onMove, { passive: true });
@@ -176,7 +180,7 @@ export function CharGrid() {
 			clearTimeout(resizeT);
 			resizeT = setTimeout(() => {
 				build();
-				if (reduced && ctx && base) {
+				if (reduced && ctx && base && base.width && base.height) {
 					ctx.setTransform(1, 0, 0, 1, 0, 0);
 					ctx.drawImage(base, 0, 0);
 				}

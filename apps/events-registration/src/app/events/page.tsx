@@ -5,7 +5,6 @@ import { eventsData } from "../../data/events";
 import { eventTheme, CAT_THEME } from "../../data/themes";
 import { Marquee } from "../../components/fx/Marquee";
 import { Reveal, RevealTitle } from "../../components/fx/Reveal";
-import { FloatingStickers } from "../../components/fx/Stickers";
 import { TiltCard } from "../../components/fx/TiltCard";
 import { PosterArt } from "../../components/fx/PosterArt";
 
@@ -53,16 +52,8 @@ export default function EventsPage() {
 		<div className="pt-36">
 			{/* ------------------------------ HERO ------------------------------ */}
 			<section className="relative mx-auto max-w-7xl overflow-hidden px-4 pb-10 md:px-8">
-				<FloatingStickers
-					items={[
-						{ name: "bolt", color: "var(--lime)", left: "80%", top: "6%", size: 64, rot: 10, depth: 0.8 },
-						{ name: "star", color: "var(--pink)", left: "62%", top: "48%", size: 52, rot: -12, depth: 0.6 },
-						{ name: "spiral", color: "var(--cyan)", left: "8%", top: "58%", size: 58, rot: 0, depth: 0.9, className: "spin-slow" },
-					]}
-				/>
-
 				<Reveal>
-					<span className="tape mb-5 inline-block -rotate-2">
+					<span className="eyebrow mb-5 inline-block">
 						The main arena &middot; On campus
 					</span>
 				</Reveal>
@@ -78,7 +69,7 @@ export default function EventsPage() {
 					</p>
 				</Reveal>
 
-				{/* stage jump rail — torn ticket stubs */}
+				{/* stage jump rail */}
 				<Reveal delay={0.2} className="mt-10 flex flex-wrap gap-3">
 					{CATEGORIES.map((cat, i) => {
 						const theme = CAT_THEME[cat] ?? { a: "#7c3aed", b: "#ff6ec7" };
@@ -88,10 +79,7 @@ export default function EventsPage() {
 								href={`#stage-${i}`}
 								data-cursor-text="JUMP"
 								className="ticket px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform duration-200 hover:-translate-y-1"
-								style={{
-									color: theme.b,
-									transform: `rotate(${(i % 3) - 1}deg)`,
-								}}
+								style={{ color: theme.b }}
 							>
 								{STAGES[cat]?.stage ?? cat}
 							</a>
@@ -166,10 +154,9 @@ export default function EventsPage() {
 												href={`/events/${e.slug}`}
 												data-cursor-text="OPEN"
 												className="group block"
-												style={{ transform: `rotate(${j % 2 ? 1.4 : -1.4}deg)` }}
 											>
 												<TiltCard className="h-[300px] w-[228px] md:h-[356px] md:w-[270px]">
-													<div className="h-full w-full overflow-hidden border-2 border-white/15 shadow-[8px_8px_0_rgba(0,0,0,0.5)] transition-shadow duration-300 group-hover:shadow-[10px_10px_0_rgba(0,0,0,0.6)]">
+													<div className="h-full w-full overflow-hidden rounded-xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:-translate-y-1">
 														<PosterArt
 															slug={e.slug}
 															title={e.title}
@@ -201,7 +188,7 @@ export default function EventsPage() {
 
 			{/* --------------------------- CTA STRIP ---------------------------- */}
 			<section className="py-12">
-				<div className="-rotate-1 scale-[1.01]" style={{ background: "var(--pink)" }}>
+				<div style={{ background: "var(--pink)" }}>
 					<Marquee duration={26} className="py-5">
 						{Array.from({ length: 8 }).map((_, i) => (
 							<Link

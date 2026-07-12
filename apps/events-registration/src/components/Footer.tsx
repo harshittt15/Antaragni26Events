@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { Marquee } from "./fx/Marquee";
-import { Sticker } from "./fx/Stickers";
 
 /* Festival ending screen — the encore, not a sitemap.
    Giant closing type, film-style credits, a stamped ticket strip. */
@@ -11,22 +10,15 @@ const Footer = () => {
 		<footer className="relative mt-28 overflow-hidden">
 			{/* closing statement */}
 			<div className="relative px-4 pb-6 pt-16 text-center">
-				<div className="pointer-events-none absolute left-6 top-10 hidden rotate-12 md:block">
-					<Sticker name="smiley" color="var(--orange)" className="h-16 w-16" />
-				</div>
-				<div className="pointer-events-none absolute right-8 top-24 hidden -rotate-12 md:block">
-					<Sticker name="star" color="var(--cyan)" className="h-14 w-14" />
-				</div>
-
 				<p className="font-poster text-[11vw] uppercase leading-[0.9] md:text-[8vw]">
 					<span className="text-gradient-live">See you</span>
 					<br />
-					<span className="text-stroke">in October</span>
+					<span className="text-foreground/90">in October</span>
 				</p>
 			</div>
 
 			{/* full-width closing marquee */}
-			<div className="-rotate-1 scale-[1.02]" style={{ background: "var(--lime)" }}>
+			<div style={{ background: "var(--lime)" }}>
 				<Marquee duration={24} className="py-4">
 					{Array.from({ length: 6 }).map((_, i) => (
 						<span
@@ -43,7 +35,7 @@ const Footer = () => {
 			{/* film credits */}
 			<div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
 				<div>
-					<p className="font-title inline-block -rotate-1 border-2 border-[#0a0612] bg-[var(--pink)] px-3 py-1.5 text-xl font-black text-[#0a0612] shadow-[4px_4px_0_rgba(0,0,0,0.5)]" style={{ borderRadius: 8 }}>
+					<p className="font-title inline-block bg-[var(--pink)] px-3 py-1.5 text-xl font-black text-[#0a0612]" style={{ borderRadius: 12 }}>
 						ANTARAGNI&rsquo;26
 					</p>
 					<p className="mt-5 max-w-xs text-sm leading-relaxed text-foreground/60">
@@ -69,7 +61,7 @@ const Footer = () => {
 				</div>
 
 				<div>
-					<p className="tape mb-6 inline-block -rotate-1">Explore</p>
+					<p className="eyebrow mb-6 inline-block">Explore</p>
 					<ul className="space-y-3 text-sm font-bold uppercase tracking-wider text-foreground/70">
 						<li>
 							<Link href="/events" className="hover:text-[var(--lime)]">
@@ -105,7 +97,7 @@ const Footer = () => {
 				</div>
 
 				<div>
-					<p className="tape tape-pink mb-6 inline-block rotate-1">Connect</p>
+					<p className="eyebrow mb-6 inline-block" style={{ color: "var(--pink)" }}>Connect</p>
 					<ul className="space-y-3 text-sm font-bold uppercase tracking-wider text-foreground/70">
 						<li>
 							<a
@@ -149,7 +141,7 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className="border-t-2 border-dashed border-white/15 py-6 text-center text-xs uppercase tracking-[0.3em] text-foreground/40">
+			<div className="border-t border-white/10 py-6 text-center text-xs uppercase tracking-[0.3em] text-foreground/40">
 				Made with love by the Antaragni Web Team &middot; IIT Kanpur
 			</div>
 		</footer>

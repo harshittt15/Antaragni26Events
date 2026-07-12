@@ -8,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Marquee } from "../components/fx/Marquee";
 import { Reveal, RevealTitle } from "../components/fx/Reveal";
 import { PosterArt } from "../components/fx/PosterArt";
-import { FloatingStickers } from "../components/fx/Stickers";
 import { Magnetic } from "../components/fx/Magnetic";
 import { eventTheme, tripTheme } from "../data/themes";
 import { Contact } from "../components/Contact";
@@ -17,8 +16,8 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /* ---------------------------------- HERO ----------------------------------
    An album cover, not a landing page: left-anchored giant wordmark with a
-   live gradient sweeping through it, repeated outline type wallpapering the
-   back, festival stickers floating with cursor parallax, ticket-stamp date. */
+   live gradient sweeping through it, a whisper of repeated outline type
+   behind, date stamp top-right. */
 
 const TITLE = "ANTARAGNI";
 
@@ -36,7 +35,6 @@ function Hero() {
 					duration: 1.2,
 					delay: 0.25,
 				})
-					.from(".hero-back", { opacity: 0, duration: 0.9 }, "-=0.6")
 					.from(".hero-eyebrow", { opacity: 0, y: 20, duration: 0.7 }, "-=0.7")
 					.from(".hero-sub", { opacity: 0, y: 24, duration: 0.8 }, "-=0.5")
 					.from(
@@ -44,7 +42,7 @@ function Hero() {
 						{ opacity: 0, y: 24, stagger: 0.12, duration: 0.7 },
 						"-=0.55"
 					)
-					.from(".hero-stamp", { opacity: 0, scale: 0.6, rotate: -12, duration: 0.6, ease: "back.out(2)" }, "-=0.6")
+					.from(".hero-stamp", { opacity: 0, y: -16, duration: 0.6, ease: "power3.out" }, "-=0.6")
 					.from(".hero-scroll", { opacity: 0, duration: 1 }, "-=0.2");
 			}
 
@@ -78,39 +76,26 @@ function Hero() {
 			ref={ref}
 			className="relative flex min-h-screen flex-col justify-center overflow-hidden px-5 md:px-12"
 		>
-			{/* wallpaper of outline type behind everything */}
-			<div className="hero-backdrop pointer-events-none absolute inset-0 flex flex-col justify-center gap-2 opacity-90">
-				{[0, 1, 2, 3, 4].map((row) => (
+			{/* whisper of outline type behind everything */}
+			<div className="hero-backdrop pointer-events-none absolute inset-0 flex flex-col justify-center gap-6">
+				{[0, 1, 2].map((row) => (
 					<div
 						key={row}
 						className="backdrop-word font-poster text-[11vw] uppercase"
 						style={{
-							transform: `translateX(${row % 2 ? -6 : -18}%) rotate(-4deg)`,
+							transform: `translateX(${row % 2 ? -6 : -16}%)`,
 						}}
 					>
 						{Array.from({ length: 4 })
-							.map(() => "ANTARAGNI ✦ ")
+							.map(() => "ANTARAGNI ")
 							.join("")}
 					</div>
 				))}
 			</div>
 
-			{/* floating festival stickers with cursor parallax */}
-			<FloatingStickers
-				items={[
-					{ name: "star", color: "var(--lime)", left: "72%", top: "16%", size: 74, rot: 12, depth: 0.9 },
-					{ name: "flame", color: "var(--pink)", left: "6%", top: "20%", size: 62, rot: -10, depth: 0.6 },
-					{ name: "note", color: "var(--cyan)", left: "86%", top: "62%", size: 58, rot: 8, depth: 1 },
-					{ name: "flower", color: "var(--orange)", left: "58%", top: "8%", size: 48, rot: -14, depth: 0.5 },
-					{ name: "spiral", color: "var(--violet)", left: "12%", top: "72%", size: 66, rot: 0, depth: 0.8, className: "spin-slow" },
-					{ name: "smiley", color: "var(--lime)", left: "44%", top: "78%", size: 44, rot: 10, depth: 0.7 },
-					{ name: "eye", color: "var(--cyan)", left: "30%", top: "12%", size: 46, rot: -6, depth: 0.4 },
-				]}
-			/>
-
-			{/* ticket-stamp date, pinned top-right like a price sticker */}
-			<div className="hero-stamp absolute right-5 top-24 rotate-6 md:right-14 md:top-28">
-				<div className="flex flex-col items-center gap-1">
+			{/* date stamp, pinned top-right */}
+			<div className="hero-stamp absolute right-5 top-24 md:right-14 md:top-28">
+				<div className="flex flex-col items-end gap-1.5">
 					<span className="tape">OCT 2026</span>
 					<span className="tape tape-pink">IIT KANPUR</span>
 					<span className="tape tape-cyan">61st Edition</span>
@@ -123,21 +108,8 @@ function Hero() {
 					North India&rsquo;s biggest college cultural festival
 				</p>
 
-				{/* the identity — ONE line, layered like a screen-printed poster:
-				    lime outline echo behind, ink offset below, chrome front */}
+				{/* the identity — one confident line with a live chrome sweep */}
 				<div className="hero-title relative w-fit select-none">
-					<span
-						aria-hidden
-						className="hero-back hero-word hero-word-echo font-title absolute left-0 top-0 -translate-x-[0.06em] -translate-y-[0.06em] text-[10.5vw] font-black md:text-[9.3vw]"
-					>
-						{TITLE}
-					</span>
-					<span
-						aria-hidden
-						className="hero-back hero-word hero-word-ink font-title absolute left-0 top-0 translate-x-[0.07em] translate-y-[0.07em] text-[10.5vw] font-black md:text-[9.3vw]"
-					>
-						{TITLE}
-					</span>
 					<h1
 						className="hero-word font-title relative text-[10.5vw] font-black md:text-[9.3vw]"
 						aria-label={TITLE}
@@ -188,7 +160,7 @@ function Hero() {
 	);
 }
 
-/* ------------------------- CROSSING MARQUEE BANDS ------------------------- */
+/* ----------------------------- MARQUEE BAND ------------------------------- */
 
 const WORDS = [
 	"Music",
@@ -207,11 +179,8 @@ const WORDS = [
 
 function Band() {
 	return (
-		<div className="relative z-10 -my-6 overflow-hidden py-10">
-			<div
-				className="-rotate-2 scale-[1.04]"
-				style={{ background: "var(--lime)" }}
-			>
+		<div className="relative z-10 overflow-hidden py-14">
+			<div style={{ background: "var(--lime)" }}>
 				<Marquee duration={22} className="py-3">
 					{WORDS.map((w) => (
 						<span
@@ -219,23 +188,7 @@ function Band() {
 							className="font-title mx-4 flex items-center gap-8 text-xl font-bold uppercase tracking-wide text-[#0a0612]"
 						>
 							{w}
-							<span className="text-[#0a0612]/60">&#10022;</span>
-						</span>
-					))}
-				</Marquee>
-			</div>
-			<div
-				className="rotate-1 scale-[1.04] border-y-2 border-[#0a0612]"
-				style={{ background: "var(--pink)", marginTop: "-0.5rem" }}
-			>
-				<Marquee duration={30} reverse className="py-2">
-					{Array.from({ length: 6 }).map((_, i) => (
-						<span
-							key={i}
-							className="font-poster mx-6 flex items-center gap-6 text-lg uppercase tracking-wider text-[#0a0612]"
-						>
-							Oct 2026 <span>&#9733;</span> IIT Kanpur <span>&#9733;</span> 300+
-							colleges <span>&#9733;</span> 40+ competitions
+							<span className="text-[#0a0612]/50">&#10022;</span>
 						</span>
 					))}
 				</Marquee>
@@ -245,17 +198,17 @@ function Band() {
 }
 
 /* ------------------------------ PORTAL POSTERS ----------------------------
-   Two tilted, overlapping gig posters taped to the wall — not cards. */
+   Two full-bleed gig posters, side by side — the site's two doors. */
 
 function Portals() {
 	return (
-		<section className="relative mx-auto max-w-6xl px-4 py-28">
+		<section className="relative mx-auto max-w-6xl px-4 py-32">
 			<div className="backdrop-word font-poster pointer-events-none absolute left-1/2 top-10 -translate-x-1/2 text-[16vw] uppercase">
 				Two Worlds
 			</div>
 
 			<Reveal className="relative mb-20 max-w-lg">
-				<span className="tape tape-pink mb-4 inline-block -rotate-2">
+				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--pink)" }}>
 					Pick your universe
 				</span>
 				<h2 className="font-title text-4xl font-black uppercase leading-none md:text-6xl">
@@ -265,15 +218,15 @@ function Portals() {
 				</h2>
 			</Reveal>
 
-			<div className="relative grid gap-14 md:grid-cols-2 md:gap-8">
+			<div className="relative grid gap-10 md:grid-cols-2 md:gap-8">
 				{/* Events poster */}
 				<Reveal>
 					<Link
 						href="/events"
 						data-cursor-text="ENTER"
-						className="group relative block -rotate-2 border-2 border-white/15 shadow-[10px_10px_0_rgba(0,0,0,0.5)] transition-transform duration-500 hover:-translate-y-2 hover:rotate-0"
+						className="group relative block overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-500 hover:-translate-y-2"
 					>
-						<span className="tape absolute -top-3 left-8 z-10 rotate-3">On campus</span>
+						<span className="tape absolute left-6 top-6 z-10">On campus</span>
 						<div className="relative h-[520px] overflow-hidden">
 							<PosterArt
 								slug="events-portal"
@@ -303,14 +256,14 @@ function Portals() {
 					</Link>
 				</Reveal>
 
-				{/* Roadtrips poster — offset lower, opposite tilt */}
-				<Reveal delay={0.12} className="md:mt-24">
+				{/* Roadtrips poster — offset lower for rhythm */}
+				<Reveal delay={0.12} className="md:mt-20">
 					<Link
 						href="/roadtrips"
 						data-cursor-text="ENTER"
-						className="group relative block rotate-2 border-2 border-white/15 shadow-[10px_10px_0_rgba(0,0,0,0.5)] transition-transform duration-500 hover:-translate-y-2 hover:rotate-0"
+						className="group relative block overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-500 hover:-translate-y-2"
 					>
-						<span className="tape tape-cyan absolute -top-3 right-8 z-10 -rotate-3">
+						<span className="tape tape-cyan absolute right-6 top-6 z-10">
 							Across India
 						</span>
 						<div className="relative h-[520px] overflow-hidden">
@@ -380,21 +333,14 @@ const STATS = [
 function About() {
 	return (
 		<section className="relative mx-auto max-w-6xl overflow-hidden px-4 py-28">
-			<FloatingStickers
-				items={[
-					{ name: "bolt", color: "var(--orange)", left: "88%", top: "10%", size: 56, rot: 14, depth: 0.6 },
-					{ name: "flower", color: "var(--pink)", left: "4%", top: "60%", size: 52, rot: -8, depth: 0.8 },
-				]}
-			/>
-
 			<div className="grid items-start gap-16 md:grid-cols-[1.1fr_1fr]">
 				<Reveal>
-					<span className="tape mb-5 inline-block rotate-1">
+					<span className="eyebrow mb-5 inline-block">
 						The rebirth of culture
 					</span>
 					<h2 className="font-title text-4xl font-black leading-tight md:text-5xl">
 						Six decades of{" "}
-						<span className="marker-pink marker -rotate-1 inline-block">
+						<span className="marker-pink marker inline-block">
 							goosebumps.
 						</span>
 					</h2>
@@ -410,16 +356,12 @@ function About() {
 					</p>
 				</Reveal>
 
-				{/* typographic stat stack — numbers bleed into the background */}
-				<Reveal className="flex flex-col gap-2" stagger={0.12}>
-					{STATS.map((s, i) => (
-						<div
-							key={s.label}
-							className="flex items-baseline gap-4"
-							style={{ transform: `rotate(${i % 2 ? 1 : -1}deg) translateX(${(i % 3) * 14}px)` }}
-						>
+				{/* typographic stat stack */}
+				<Reveal className="flex flex-col gap-5" stagger={0.12}>
+					{STATS.map((s) => (
+						<div key={s.label} className="flex items-baseline gap-5">
 							<span
-								className={`font-poster text-7xl leading-[0.9] md:text-8xl ${
+								className={`font-poster w-56 text-right text-7xl leading-[0.9] md:text-8xl ${
 									s.style === "gradient"
 										? "text-gradient-live"
 										: s.style === "outline"
@@ -429,7 +371,7 @@ function About() {
 							>
 								<Counter to={s.to} suffix={s.suffix} />
 							</span>
-							<span className="tape tape-pink shrink-0 -rotate-2 !text-[10px]">
+							<span className="shrink-0 text-[11px] font-bold uppercase tracking-[0.25em] text-foreground/50">
 								{s.label}
 							</span>
 						</div>
@@ -475,7 +417,7 @@ function Legacy() {
 			</div>
 
 			<Reveal className="relative mx-auto mb-16 max-w-6xl px-4">
-				<span className="tape tape-cyan mb-4 inline-block -rotate-1">
+				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--cyan)" }}>
 					The wall of legends
 				</span>
 				<h2 className="font-title max-w-xl text-4xl font-black uppercase leading-none md:text-6xl">
@@ -483,21 +425,17 @@ function Legacy() {
 				</h2>
 			</Reveal>
 
-			{/* taped-up poster wall */}
+			{/* poster wall */}
 			<Marquee duration={45} pauseOnHover className="mb-12">
 				{WALL.map((p, i) => {
 					const t = p.trip ? tripTheme(p.slug) : eventTheme(p.slug);
 					return (
 						<div
 							key={i}
-							className={`relative mx-4 h-64 w-48 shrink-0 border-2 border-white/15 shadow-[7px_7px_0_rgba(0,0,0,0.5)] md:h-80 md:w-60 ${
-								i % 2 ? "translate-y-4 rotate-2" : "-translate-y-2 -rotate-2"
+							className={`relative mx-4 h-64 w-48 shrink-0 overflow-hidden rounded-xl border border-white/10 shadow-2xl shadow-black/50 md:h-80 md:w-60 ${
+								i % 2 ? "translate-y-4" : "-translate-y-2"
 							}`}
 						>
-							<span
-								className={`tape absolute -top-3 left-1/2 z-10 -translate-x-1/2 ${i % 3 === 1 ? "tape-pink" : i % 3 === 2 ? "tape-cyan" : ""}`}
-								style={{ width: 70, height: 18, padding: 0 }}
-							/>
 							<PosterArt
 								slug={p.slug}
 								title={p.title}

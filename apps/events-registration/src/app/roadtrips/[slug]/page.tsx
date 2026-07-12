@@ -22,7 +22,6 @@ import Synchro_registration from "../../../components/Synchro_registration";
 import { Marquee } from "../../../components/fx/Marquee";
 import { RevealTitle } from "../../../components/fx/Reveal";
 import { PosterArt } from "../../../components/fx/PosterArt";
-import { FloatingStickers } from "../../../components/fx/Stickers";
 import { TiltCard } from "../../../components/fx/TiltCard";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -73,10 +72,7 @@ const PageSection = ({
 				}}
 				aria-hidden
 			/>
-			<span
-				className="tape relative mb-4 inline-block -rotate-1"
-				style={{ background: b, color: "#0a0612" }}
-			>
+			<span className="eyebrow relative mb-4 inline-block" style={{ color: b }}>
 				{n} / {tag}
 			</span>
 			<h2
@@ -194,15 +190,8 @@ export default function RoadtripDetailPage({
 					}}
 					aria-hidden
 				/>
-				<FloatingStickers
-					items={[
-						{ name: "flame", color: "var(--orange)", left: "14%", top: "24%", size: 58, rot: -12, depth: 0.8 },
-						{ name: "bolt", color: "var(--pink)", left: "82%", top: "20%", size: 50, rot: 14, depth: 0.9 },
-					]}
-				/>
-
 				<div className="relative">
-					<span className="tape mb-5 inline-block -rotate-2">
+					<span className="eyebrow mb-5 inline-block">
 						Battle Underground &middot; Pick your arena
 					</span>
 					<RevealTitle
@@ -222,10 +211,9 @@ export default function RoadtripDetailPage({
 							onClick={() => router.push(`/roadtrips/${f.slug}`)}
 							data-cursor-text="ENTER"
 							className="group cursor-pointer"
-							style={{ transform: `rotate(${i ? 2 : -2}deg)` }}
 						>
 							<TiltCard className="h-[420px] w-72" max={11}>
-								<div className="relative h-full w-full overflow-hidden border-2 border-white/15 shadow-[10px_10px_0_rgba(0,0,0,0.55)] transition-shadow duration-300 group-hover:shadow-[14px_14px_0_rgba(0,0,0,0.65)]">
+								<div className="relative h-full w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:-translate-y-1">
 									<PosterArt
 										slug={f.slug}
 										title={f.label}
@@ -269,17 +257,9 @@ export default function RoadtripDetailPage({
 				>
 					{heroTitle}
 				</div>
-				<FloatingStickers
-					items={[
-						{ name: "flame", color: theme.a, left: "8%", top: "22%", size: 56, rot: -12, depth: 0.7 },
-						{ name: "bolt", color: theme.b, left: "46%", top: "16%", size: 46, rot: 10, depth: 0.9 },
-						{ name: "star", color: theme.a, left: "40%", top: "78%", size: 50, rot: 8, depth: 0.5 },
-					]}
-				/>
-
 				<div className="relative grid w-full max-w-7xl items-center gap-10 md:mx-auto md:grid-cols-[1.2fr_1fr]">
 					<div>
-						<span className="tape mb-5 inline-block -rotate-2" style={{ background: theme.a }}>
+						<span className="eyebrow mb-5 inline-block" style={{ color: theme.b }}>
 							{cardInfo?.category ?? "Roadtrip"} &middot; On tour
 						</span>
 						<RevealTitle
@@ -306,7 +286,7 @@ export default function RoadtripDetailPage({
 					{/* the collectible tour poster, tilting */}
 					<div className="hidden md:block">
 						<TiltCard className="mx-auto w-full max-w-xs" max={10}>
-							<div className="relative aspect-[3/4] overflow-hidden border-2 border-white/15 shadow-[12px_12px_0_rgba(0,0,0,0.55)]">
+							<div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
 								<PosterArt
 									slug={slug.toLowerCase()}
 									title={heroTitle}
@@ -328,7 +308,6 @@ export default function RoadtripDetailPage({
 
 			{/* gradient marquee divider */}
 			<div
-				className="-rotate-1 scale-[1.01]"
 				style={{
 					background: `linear-gradient(90deg, ${theme.a}, ${theme.b})`,
 				}}
@@ -362,7 +341,7 @@ export default function RoadtripDetailPage({
 							<p className="text-lg leading-relaxed text-foreground/75 md:text-xl [&:first-letter]:float-left [&:first-letter]:mr-3 [&:first-letter]:text-7xl [&:first-letter]:font-black [&:first-letter]:leading-[0.8] [&:first-letter]:text-[var(--lime)]">
 								{detailInfo?.aboutUs.title ?? "Details Coming Soon"}
 							</p>
-							<div className="mx-auto h-80 w-60 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 -rotate-2">
+							<div className="mx-auto h-80 w-60 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
 								<PosterArt
 									slug={`${slug.toLowerCase()}-about`}
 									title={heroTitle}
@@ -429,8 +408,8 @@ export default function RoadtripDetailPage({
 							/>
 							<div className="relative text-center">
 								<span
-									className="tape relative mb-4 inline-block rotate-1"
-									style={{ background: theme.b, color: "#0a0612" }}
+									className="eyebrow relative mb-4 inline-block"
+									style={{ color: theme.b }}
 								>
 									Registration &middot; {theme.tag}
 								</span>

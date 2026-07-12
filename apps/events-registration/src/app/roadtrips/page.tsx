@@ -4,7 +4,6 @@ import Link from "next/link";
 import { roadtrips } from "../../data/roadtrips";
 import { tripTheme } from "../../data/themes";
 import { Reveal, RevealTitle } from "../../components/fx/Reveal";
-import { FloatingStickers } from "../../components/fx/Stickers";
 import { TiltCard } from "../../components/fx/TiltCard";
 import { PosterArt } from "../../components/fx/PosterArt";
 import { Marquee } from "../../components/fx/Marquee";
@@ -44,17 +43,15 @@ function TourPoster({
 	i: number;
 }) {
 	const t = tripTheme(slug);
-	const rot = i % 2 ? 1.6 : -1.6;
 	return (
 		<Reveal>
 			<Link
 				href={`/roadtrips/${slug}`}
 				data-cursor-text="ENTER"
 				className="group block"
-				style={{ transform: `rotate(${rot}deg)` }}
 			>
 				<TiltCard className="w-full" max={9}>
-					<div className="relative overflow-hidden border-2 border-white/15 shadow-[10px_10px_0_rgba(0,0,0,0.5)] transition-shadow duration-300 group-hover:shadow-[14px_14px_0_rgba(0,0,0,0.6)]">
+					<div className="relative overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-300 group-hover:-translate-y-1">
 						{/* the collectible poster */}
 						<div className="relative aspect-[3/4]">
 							<PosterArt
@@ -68,7 +65,7 @@ function TourPoster({
 							/>
 							{/* tour stamp */}
 							<span
-								className="tape absolute right-4 top-12 z-10 rotate-6 !text-[9px]"
+								className="tape absolute right-4 top-12 z-10 !text-[9px]"
 								style={{
 									background: t.a,
 								}}
@@ -115,19 +112,11 @@ export default function RoadtripsPage() {
 					className="backdrop-word font-poster pointer-events-none absolute -top-4 left-0 text-[16vw] uppercase"
 					aria-hidden
 				>
-					On Tour &#10022; On Tour
+					On Tour &middot; On Tour
 				</div>
 
-				<FloatingStickers
-					items={[
-						{ name: "flame", color: "var(--orange)", left: "78%", top: "12%", size: 66, rot: 8, depth: 0.8 },
-						{ name: "note", color: "var(--cyan)", left: "60%", top: "52%", size: 52, rot: -10, depth: 0.6 },
-						{ name: "star", color: "var(--pink)", left: "6%", top: "62%", size: 56, rot: 14, depth: 0.9 },
-					]}
-				/>
-
 				<Reveal className="relative">
-					<span className="tape tape-pink mb-5 inline-block rotate-1">
+					<span className="eyebrow mb-5 inline-block" style={{ color: "var(--pink)" }}>
 						On tour &middot; Across India
 					</span>
 				</Reveal>
@@ -156,7 +145,7 @@ export default function RoadtripsPage() {
 							className="group grid items-center gap-8 md:grid-cols-[1fr_1.1fr]"
 						>
 							<TiltCard className="mx-auto w-full max-w-sm md:order-2" max={8}>
-								<div className="relative aspect-[3/4] overflow-hidden border-2 border-white/15 shadow-[12px_12px_0_rgba(0,0,0,0.55)]">
+								<div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
 									<PosterArt
 										slug={nationals.slug}
 										title={nationals.title}
@@ -169,7 +158,7 @@ export default function RoadtripsPage() {
 							</TiltCard>
 
 							<div className="md:order-1">
-								<span className="tape mb-4 inline-block -rotate-2">
+								<span className="eyebrow mb-4 inline-block">
 									The headline act
 								</span>
 								<h2
@@ -223,7 +212,7 @@ export default function RoadtripsPage() {
 			</section>
 
 			{/* ------------------------- TOUR MARQUEE ---------------------------- */}
-			<div className="my-6 -rotate-1 scale-[1.02]" style={{ background: "var(--cyan)" }}>
+			<div className="my-6" style={{ background: "var(--cyan)" }}>
 				<Marquee duration={26} className="py-4">
 					{Array.from({ length: 6 }).map((_, i) => (
 						<span
@@ -240,17 +229,14 @@ export default function RoadtripsPage() {
 			{/* --------------------------- HOW IT WORKS -------------------------- */}
 			<section className="mx-auto max-w-6xl px-4 pb-28 pt-14">
 				<Reveal className="mb-12">
-					<span className="tape tape-cyan inline-block -rotate-1">
+					<span className="eyebrow inline-block" style={{ color: "var(--cyan)" }}>
 						How the tour works
 					</span>
 				</Reveal>
 				<div className="grid gap-10 md:grid-cols-3">
 					{STEPS.map((s, i) => (
 						<Reveal key={s.n} delay={i * 0.1}>
-							<div
-								className="ticket relative px-7 py-8"
-								style={{ transform: `rotate(${(i % 3) - 1}deg)` }}
-							>
+							<div className="ticket relative px-7 py-8">
 								<span className="font-poster text-6xl text-gradient-live">
 									{s.n}
 								</span>
