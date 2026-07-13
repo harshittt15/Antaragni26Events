@@ -4,6 +4,9 @@ export type ContactItem = {
 	insta: string;
 	linkedin: string;
 	image: string;
+	role?: string;
+	department?: string;
+	email?: string;
 };
 
 export type SponsorItem = {

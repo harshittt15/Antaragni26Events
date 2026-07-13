@@ -1,39 +1,57 @@
 import { ContactItem } from "@repo/model";
 
+/* Hospitality & Transport team — Antaragni '26.
+   Photos live in public/contacts/. */
 export const contacts: ContactItem[] = [
 	{
-		name: "Gundeep Singh",
-		contact: 9887163503,
-		insta: "https://www.instagram.com/gundeepsinghz/",
-		linkedin: "https://www.linkedin.com/in/gundeep-singh-ab220b292/",
-        image: '/contacts/Gundeep.jpg'
+		name: "Ish Upadhyay",
+		role: "Organizer",
+		department: "Hospitality and Transport",
+		contact: 9826889204,
+		email: "ishupadhyay8259@gmail.com",
+		insta: "https://www.instagram.com/better_call_ish?igsh=MWxlYjQ3dTBkaHpnaA%3D%3D&utm_source=qr",
+		linkedin:
+			"https://www.linkedin.com/in/ish-upadhyay-9404a1360?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+		image: "/contacts/ish.webp",
 	},
 	{
-		name: "Harsh Vazirani",
-		contact: 9301459969,
-		insta: "https://www.instagram.com/gabbruuuu_/",
-		linkedin:"https://www.linkedin.com/in/harsh-vazirani-747562299/?originalSubdomain=in",
-        image: '/contacts/Harsh.jpeg'
+		name: "Deepanshu Kashyap",
+		role: "Organizer",
+		department: "Hospitality and Transport",
+		contact: 8384029673,
+		email: "dkris3348@gmail.com",
+		insta: "https://www.instagram.com/idk_deepksp?igsh=MWYxOTFsaWhkbXE0bg==",
+		linkedin: "https://www.linkedin.com/in/deepanshu-kashyap-hr05",
+		image: "/contacts/deepanshu.webp",
 	},
 	{
-		name: "Hanuman Choudhary",
-		contact: 7850923892,
-		insta: "https://www.instagram.com/hanuman_choudhary1628?igsh=aGdmc2c5dHF3Yndr",
-		linkedin: "https://www.linkedin.com/in/hanuman-sinwar-b09681286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-        image: '/contacts/Hanuman.png'
+		name: "Dhruv Garg",
+		role: "Organizer",
+		department: "Hospitality and Transport",
+		contact: 8690168344,
+		email: "dhruvg24@iitk.ac.in",
+		insta: "https://www.instagram.com/_hruvgarg?igsh=MWNmY2pqZWFkazJ4Zg==",
+		linkedin: "",
+		image: "/contacts/dhruv.webp",
 	},
 	{
-		name: "Vineet Kumar Sharma",
-		contact: 8961692650,
-		insta: "https://www.instagram.com/vineet_xd_/?hl=en",
-		linkedin: "https://www.linkedin.com/in/vineet-sharma-79b340282/",
-        image: '/contacts/Vineet.jpg'
+		name: "Rhythm Soan",
+		role: "Organizer",
+		department: "Hospitality and Transport",
+		contact: 9875897824,
+		email: "rhhythmsoan01@gmail.com",
+		insta: "https://www.instagram.com/yrrrhythm._.s/?utm_source=ig_web_button_share_sheet",
+		linkedin: "",
+		image: "/contacts/rhythm.webp",
 	},
 	{
-		name: "Yashasvi Mahajan",
-		contact: 6239983543,
-		insta: "https://www.instagram.com/yashasvi_mj?igsh=czU0d3hlOTVtNzls",
-		linkedin: "www.linkedin.com/in/yashasvi-mahajan-345644294",
-        image: '/contacts/Yashasvi.jpeg'
+		name: "Madhur Kumar",
+		role: "Organizer",
+		department: "Hospitality and Transport",
+		contact: 8368527779,
+		email: "madhurkumar8368@gmail.com",
+		insta: "https://www.instagram.com/madhur_47/",
+		linkedin: "https://www.linkedin.com/in/madhur-kumar-a00763287",
+		image: "/contacts/madhur.webp",
 	},
 ];
