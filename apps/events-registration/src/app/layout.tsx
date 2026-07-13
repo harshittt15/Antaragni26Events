@@ -28,10 +28,24 @@ const anton = Anton({
 	variable: "--font-poster",
 });
 
+const TITLE = "Events Registrations Antaragni";
+const DESCRIPTION =
+	"The 61st edition of Antaragni, the annual cultural festival of IIT Kanpur. Compete, perform, belong.";
+
 export const metadata: Metadata = {
-	title: "Antaragni '26 — Events & Roadtrips | IIT Kanpur",
-	description:
-		"The 61st edition of Antaragni, the annual cultural festival of IIT Kanpur. Compete, perform, belong.",
+	title: TITLE,
+	description: DESCRIPTION,
+	openGraph: {
+		title: TITLE,
+		description: DESCRIPTION,
+		siteName: TITLE,
+		type: "website",
+	},
+	twitter: {
+		card: "summary",
+		title: TITLE,
+		description: DESCRIPTION,
+	},
 };
 
 export default function RootLayout({
@@ -48,10 +62,11 @@ export default function RootLayout({
 				<Toaster
 					toastOptions={{
 						style: {
-							background: "#12091f",
-							color: "#f4f1fa",
-							border: "2px solid rgba(255,255,255,0.16)",
-							boxShadow: "4px 4px 0 rgba(0,0,0,0.5)",
+							background: "#1d1a1a",
+							color: "#f3ede2",
+							border: "1px solid rgba(255,255,255,0.1)",
+							borderRadius: "12px",
+							boxShadow: "0 12px 40px rgba(0,0,0,0.4)",
 						},
 					}}
 				/>

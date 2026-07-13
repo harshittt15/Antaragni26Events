@@ -514,7 +514,7 @@ export default function Login() {
 						)}
 					</form>
 					<div className="w-full flex justify-center mt-8">
-						<button className="btn-festival !px-14" onClick={register}>
+						<button className="btn-primary !px-14" onClick={register}>
 							Complete Registration
 						</button>
 					</div>

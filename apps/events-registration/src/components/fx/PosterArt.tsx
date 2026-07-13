@@ -113,7 +113,7 @@ function Mark({
 						fill={b}
 						opacity={0.45}
 					/>
-					<Icon x={x - size / 2} y={y - size / 2} size={size} fill="#f4f1fa" />
+					<Icon x={x - size / 2} y={y - size / 2} size={size} fill="#f3ede2" />
 				</>
 			) : glyph ? (
 				<>
@@ -135,7 +135,7 @@ function Mark({
 						fontSize={size * 1.15}
 						fontWeight={900}
 						textAnchor="middle"
-						fill="#f4f1fa"
+						fill="#f3ede2"
 						fontFamily="var(--font-rakkas), sans-serif"
 					>
 						{glyph}
@@ -157,7 +157,7 @@ function Crowd({ y, r: rand }: { y: number; r: () => number }) {
 					cx={x + rand() * 6}
 					cy={y + row * 12 + rand() * 4}
 					r={7 + rand() * 3}
-					fill="#070410"
+					fill="#0f0c0b"
 				/>
 			);
 		}
@@ -235,7 +235,7 @@ function scene(motif: Motif, s: SceneArgs) {
 						);
 					})}
 					{/* vinyl */}
-					<circle cx={cx} cy={cy} r={104} fill="#070410" />
+					<circle cx={cx} cy={cy} r={104} fill="#0f0c0b" />
 					<circle cx={cx} cy={cy} r={104} fill="none" stroke={g} strokeWidth={3} />
 					{[84, 68, 52].map((rad) => (
 						<circle
@@ -249,7 +249,7 @@ function scene(motif: Motif, s: SceneArgs) {
 						/>
 					))}
 					<circle cx={cx} cy={cy} r={38} fill={g} />
-					<circle cx={cx} cy={cy} r={4} fill="#070410" />
+					<circle cx={cx} cy={cy} r={4} fill="#0f0c0b" />
 					{/* light glint on the record */}
 					<path
 						d={`M ${cx - 70} ${cy - 44} A 82 82 0 0 1 ${cx - 12} ${cy - 82}`}
@@ -258,7 +258,7 @@ function scene(motif: Motif, s: SceneArgs) {
 						strokeLinecap="round"
 						fill="none"
 					/>
-					<Mark Icon={Icon} glyph={glyph} x={cx} y={cy} size={44} b="#070410" rot={-6} />
+					<Mark Icon={Icon} glyph={glyph} x={cx} y={cy} size={44} b="#0f0c0b" rot={-6} />
 					<Crowd y={330} r={r} />
 				</g>
 			);
@@ -271,7 +271,7 @@ function scene(motif: Motif, s: SceneArgs) {
 					{/* spotlight cones from top corners */}
 					<polygon points={`14,-10 -40,300 150,300`} fill={a} opacity={0.3} />
 					<polygon points={`306,-10 170,300 360,300`} fill={b} opacity={0.3} />
-					<polygon points={`160,-30 60,310 260,310`} fill="#f4f1fa" opacity={0.14} />
+					<polygon points={`160,-30 60,310 260,310`} fill="#f3ede2" opacity={0.14} />
 					{/* motion trails arcing through the frame */}
 					{[0, 1, 2].map((i) => (
 						<path
@@ -287,7 +287,7 @@ function scene(motif: Motif, s: SceneArgs) {
 					))}
 					{/* stage */}
 					<ellipse cx={W / 2} cy={306} rx={120} ry={16} fill={g} opacity={0.5} />
-					<rect x={40} y={304} width={240} height={6} fill="#070410" />
+					<rect x={40} y={304} width={240} height={6} fill="#0f0c0b" />
 					<Mark Icon={Icon} glyph={glyph} x={W / 2} y={252} size={84} b={b} rot={-8} />
 					<Confetti r={r} a={a} b={b} n={16} />
 					<Crowd y={342} r={r} />
@@ -379,7 +379,7 @@ function scene(motif: Motif, s: SceneArgs) {
 							/>
 						);
 					})}
-					<Mark Icon={Icon} glyph={glyph} x={cx} y={150} size={80} b="#070410" />
+					<Mark Icon={Icon} glyph={glyph} x={cx} y={150} size={80} b="#0f0c0b" />
 					{/* icon reflection in the waves */}
 					<g transform={`translate(0 ${2 * 268}) scale(1 -1)`} opacity={0.14}>
 						<Mark Icon={Icon} glyph={glyph} x={cx} y={150} size={80} b={b} />
@@ -411,8 +411,8 @@ function scene(motif: Motif, s: SceneArgs) {
 						);
 					})}
 					{/* manga panels */}
-					<rect x={18} y={54} width={190} height={210} fill="#070410" stroke={a} strokeWidth={3} transform="rotate(-2 113 159)" />
-					<rect x={150} y={186} width={150} height={130} fill="#070410" stroke={b} strokeWidth={3} transform="rotate(3 225 251)" />
+					<rect x={18} y={54} width={190} height={210} fill="#0f0c0b" stroke={a} strokeWidth={3} transform="rotate(-2 113 159)" />
+					<rect x={150} y={186} width={150} height={130} fill="#0f0c0b" stroke={b} strokeWidth={3} transform="rotate(3 225 251)" />
 					{/* action burst in small panel */}
 					<path
 						d={(() => {
@@ -428,7 +428,7 @@ function scene(motif: Motif, s: SceneArgs) {
 						fill={b}
 						opacity={0.9}
 					/>
-					<text x={225} y={259} fontSize={22} fontWeight={900} textAnchor="middle" fill="#070410" fontFamily="var(--font-rakkas), sans-serif">
+					<text x={225} y={259} fontSize={22} fontWeight={900} textAnchor="middle" fill="#0f0c0b" fontFamily="var(--font-rakkas), sans-serif">
 						!!
 					</text>
 					<Mark Icon={Icon} glyph={glyph} x={113} y={158} size={92} b={a} rot={-2} />
@@ -482,13 +482,13 @@ function scene(motif: Motif, s: SceneArgs) {
 					{/* brush swash */}
 					<path
 						d={`M 24 330 Q ${W / 2} ${292 + r() * 30} ${W - 24} 322`}
-						stroke="#f4f1fa"
+						stroke="#f3ede2"
 						strokeWidth={9}
 						strokeLinecap="round"
 						fill="none"
 						opacity={0.35}
 					/>
-					<Mark Icon={Icon} glyph={glyph} x={W / 2} y={222} size={80} b="#070410" rot={6} />
+					<Mark Icon={Icon} glyph={glyph} x={W / 2} y={222} size={80} b="#0f0c0b" rot={6} />
 				</g>
 			);
 		}
@@ -512,12 +512,12 @@ function scene(motif: Motif, s: SceneArgs) {
 					{/* caution stripes along the top */}
 					<g transform="rotate(-4 160 30)">
 						{Array.from({ length: 12 }, (_, i) => (
-							<rect key={i} x={-20 + i * 32} y={16} width={16} height={22} fill={i % 2 ? a : "#070410"} />
+							<rect key={i} x={-20 + i * 32} y={16} width={16} height={22} fill={i % 2 ? a : "#0f0c0b"} />
 						))}
 					</g>
 					{/* burst echo (misregistered) then main burst */}
 					<path d={burst(1)} fill={b} opacity={0.4} transform="translate(9 8)" />
-					<path d={burst(1)} fill="#070410" stroke={g} strokeWidth={4} strokeLinejoin="round" />
+					<path d={burst(1)} fill="#0f0c0b" stroke={g} strokeWidth={4} strokeLinejoin="round" />
 					<path d={burst(0.55)} fill={g} opacity={0.25} />
 					{/* spark crosses */}
 					{Array.from({ length: 7 }, (_, i) => {
@@ -577,7 +577,7 @@ export function PosterArt({
 				</linearGradient>
 				<radialGradient id={`${uid}-glow`} cx="0.5" cy="0.35" r="0.8">
 					<stop offset="0%" stopColor={a} stopOpacity="0.4" />
-					<stop offset="100%" stopColor="#0a0612" stopOpacity="0" />
+					<stop offset="100%" stopColor="#151112" stopOpacity="0" />
 				</radialGradient>
 				<pattern id={`${uid}-ht2`} width="8" height="8" patternUnits="userSpaceOnUse">
 					<circle cx="2" cy="2" r="1.5" fill={b} />
@@ -596,7 +596,7 @@ export function PosterArt({
 
 			<g clipPath={`url(#${uid}-clip)`}>
 				{/* base — rich printed stock, not digital black */}
-				<rect width={W} height={H} fill="#17101f" />
+				<rect width={W} height={H} fill="#1a1615" />
 				<rect width={W} height={H} fill={`url(#${uid}-glow)`} />
 
 				{/* the scene */}
@@ -605,13 +605,13 @@ export function PosterArt({
 				{/* diagonal title ribbon */}
 				<g transform={`rotate(-5 ${W / 2} 372)`}>
 					<rect x={-30} y={348} width={W + 60} height={48} fill={`url(#${uid}-g)`} />
-					<rect x={-30} y={348} width={W + 60} height={48} fill="none" stroke="#070410" strokeWidth={2.5} />
+					<rect x={-30} y={348} width={W + 60} height={48} fill="none" stroke="#0f0c0b" strokeWidth={2.5} />
 					<text
 						x={18}
 						y={382}
 						fontSize={title.length > 11 ? 26 : 34}
 						fontWeight={900}
-						fill="#0a0612"
+						fill="#151112"
 						fontFamily="var(--font-poster), var(--font-rakkas), sans-serif"
 						letterSpacing={1}
 					>
@@ -625,7 +625,7 @@ export function PosterArt({
 					y={30}
 					fontSize={11}
 					fontWeight={700}
-					fill="#f4f1fa"
+					fill="#f3ede2"
 					opacity={0.85}
 					fontFamily="var(--font-inter), monospace"
 					letterSpacing={2}
@@ -647,7 +647,7 @@ export function PosterArt({
 				{/* barcode */}
 				<g transform={`translate(${W - 74} ${H - 26})`} opacity={0.9}>
 					{Array.from({ length: 18 }, (_, i) => (
-						<rect key={i} x={i * 3.4} y={0} width={r() > 0.5 ? 2.2 : 1.1} height={14} fill="#f4f1fa" />
+						<rect key={i} x={i * 3.4} y={0} width={r() > 0.5 ? 2.2 : 1.1} height={14} fill="#f3ede2" />
 					))}
 				</g>
 				{/* corner ticks */}

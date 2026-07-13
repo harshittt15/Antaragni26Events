@@ -70,14 +70,14 @@ const Header = () => {
 		<>
 			<header className="fixed left-0 right-0 top-0 z-40 px-4 pt-4 md:px-6">
 				<nav className="flex items-start justify-between">
-					{/* Wordmark — lime badge */}
+					{/* Wordmark — ivory badge */}
 					<Magnetic strength={0.2}>
 						<Link
 							href="/"
 							className={`font-title inline-block px-3.5 py-2 text-base font-black tracking-tight transition-shadow duration-300 ${
 								scrolled ? "shadow-lg shadow-black/40" : ""
 							}`}
-							style={{ background: "var(--lime)", color: "#0a0612", borderRadius: 12 }}
+							style={{ background: "var(--paper)", color: "#151112", borderRadius: 12 }}
 						>
 							ANTARAGNI&rsquo;26
 						</Link>
@@ -94,8 +94,8 @@ const Header = () => {
 										href={link.href}
 										className={`rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${
 											isActive
-												? "bg-[var(--pink)] text-[#0a0612]"
-												: "text-foreground/75 hover:text-[var(--lime)]"
+												? "bg-[var(--flame)] text-[var(--bone)]"
+												: "text-foreground/75 hover:text-[var(--flame)]"
 										}`}
 									>
 										{link.label}
@@ -114,7 +114,7 @@ const Header = () => {
 									>
 										<span
 											className="h-2 w-2 rounded-full"
-											style={{ background: "var(--lime)" }}
+											style={{ background: "var(--flame)" }}
 										/>
 										<span className="max-w-32 truncate normal-case tracking-normal">
 											{user.user.displayName || "Profile"}
@@ -138,9 +138,9 @@ const Header = () => {
 										>
 											<div
 												className="border-b border-white/10 px-5 py-4"
-												style={{ background: "rgba(199,244,65,0.06)" }}
+												style={{ background: "rgba(239,78,35,0.06)" }}
 											>
-												<p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--lime)]">
+												<p className="text-[9px] font-bold uppercase tracking-[0.3em] text-[var(--flame)]">
 													Backstage pass
 												</p>
 												<p className="mt-1 truncate text-sm font-bold">
@@ -159,7 +159,7 @@ const Header = () => {
 												</Link>
 												<button
 													onClick={handleSignOut}
-													className="block w-full px-4 py-2.5 text-left text-sm font-bold text-[var(--pink)] hover:bg-white/10"
+													className="block w-full px-4 py-2.5 text-left text-sm font-bold text-[var(--raspberry)] hover:bg-white/10"
 												>
 													Sign out
 												</button>
@@ -171,7 +171,7 @@ const Header = () => {
 								<Magnetic strength={0.25}>
 									<button
 										onClick={handleSignIn}
-										className="btn-lime !px-5 !py-2 !text-xs"
+										className="btn-primary !px-5 !py-2 !text-xs"
 									>
 										Sign in
 									</button>
@@ -201,7 +201,7 @@ const Header = () => {
 
 			{/* Mobile overlay — solid poster wall */}
 			<div
-				className={`fixed inset-0 z-30 flex flex-col justify-between bg-[#0a0612] px-8 pb-10 pt-32 transition-all duration-500 md:!hidden ${
+				className={`fixed inset-0 z-30 flex flex-col justify-between bg-[#151112] px-8 pb-10 pt-32 transition-all duration-500 md:!hidden ${
 					isMobileMenuOpen ? "visible opacity-100" : "invisible opacity-0"
 				}`}
 			>
@@ -215,7 +215,7 @@ const Header = () => {
 								isMobileMenuOpen
 									? "translate-y-0 opacity-100"
 									: "translate-y-6 opacity-0"
-							} ${pathname === link.href ? "text-gradient-live" : ""}`}
+							} ${pathname === link.href ? "text-[var(--flame)]" : ""}`}
 							style={{ transitionDelay: `${100 + i * 80}ms` }}
 						>
 							{link.label}
@@ -247,7 +247,7 @@ const Header = () => {
 								setIsMobileMenuOpen(false);
 								handleSignIn();
 							}}
-							className="btn-lime w-full"
+							className="btn-primary w-full"
 						>
 							Sign in with Google
 						</button>

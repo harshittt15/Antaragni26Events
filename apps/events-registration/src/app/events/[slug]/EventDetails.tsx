@@ -107,10 +107,7 @@ export function EventDetails({
 			<h2
 				className="font-poster mb-10 text-5xl uppercase leading-none md:text-7xl"
 				style={{
-					background: `linear-gradient(92deg, ${theme.a}, ${theme.b})`,
-					WebkitBackgroundClip: "text",
-					backgroundClip: "text",
-					color: "transparent",
+					color: theme.a,
 				}}
 			>
 				{label}
@@ -126,7 +123,7 @@ export function EventDetails({
 					<a
 						key={n.id}
 						href={`#${n.id}`}
-						className="shrink-0 rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest text-foreground/60 transition-all duration-300 hover:bg-[var(--lime)] hover:text-[#0a0612]"
+						className="shrink-0 rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest text-foreground/60 transition-all duration-300 hover:bg-[var(--flame)] hover:text-[#151112]"
 					>
 						{n.label}
 					</a>
@@ -140,7 +137,7 @@ export function EventDetails({
 				<div className="grid gap-10 md:grid-cols-[1fr_280px]">
 					<Reveal>
 						<div
-							className="prose prose-invert prose-lg max-w-none text-foreground/80 prose-headings:font-title prose-headings:text-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-secondary prose-p:leading-relaxed [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:text-7xl [&>p:first-of-type]:first-letter:font-black [&>p:first-of-type]:first-letter:leading-[0.8] [&>p:first-of-type]:first-letter:text-[var(--lime)]"
+							className="prose prose-invert prose-lg max-w-none text-foreground/80 prose-headings:font-title prose-headings:text-foreground prose-strong:text-foreground prose-a:text-primary hover:prose-a:text-secondary prose-p:leading-relaxed [&>p:first-of-type]:first-letter:float-left [&>p:first-of-type]:first-letter:mr-3 [&>p:first-of-type]:first-letter:text-7xl [&>p:first-of-type]:first-letter:font-black [&>p:first-of-type]:first-letter:leading-[0.8] [&>p:first-of-type]:first-letter:text-[var(--flame)]"
 						>
 							<ReactMarkdown>{overview}</ReactMarkdown>
 						</div>
@@ -166,7 +163,7 @@ export function EventDetails({
 												<button
 													onClick={() => jumpToCompetition(comp.name)}
 													data-cursor-text="GO"
-													className="text-left text-sm font-bold text-foreground/75 transition-colors hover:text-[var(--lime)]"
+													className="text-left text-sm font-bold text-foreground/75 transition-colors hover:text-[var(--flame)]"
 												>
 													{comp.name}
 												</button>

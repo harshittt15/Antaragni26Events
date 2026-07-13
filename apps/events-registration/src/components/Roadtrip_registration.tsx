@@ -85,12 +85,12 @@ export default function RegistrationPage({ slug }: { slug: string }) {
   }, []);
 
   return (
-    <div className="container mx-auto mt-20 lg:w-[980px] xl:w-[1123px] bg-[#131328] py-5 lg:py-25 lg:px-25 rounded-[40px] border-2 border-[#313143]">
+    <div className="container mx-auto mt-20 lg:w-[980px] xl:w-[1123px] bg-[#1d1a1a] py-5 lg:py-25 lg:px-25 rounded-[40px] border-2 border-[#2e2825]">
       <div
         className="flex justify-center items-center rounded-[16px] w-[90%] lg:w-[60%] mx-auto p-[1px]"
         style={{ background: "linear-gradient(rgb(68 34 128), rgba(0, 28, 189, 0.1))" }}
       >
-        <form onSubmit={handleSubmit} className="bg-[#1C124E] rounded-[16px] w-[100%] p-5 sm:p-12">
+        <form onSubmit={handleSubmit} className="bg-[#242020] rounded-[16px] w-[100%] p-5 sm:p-12">
           <h2 className="text-center text-4xl md:text-4xl lg:text-5xl">Registration Form</h2>
 
           <div className="mt-5 flex flex-wrap gap-4">
@@ -114,7 +114,7 @@ export default function RegistrationPage({ slug }: { slug: string }) {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="px-4 py-2 rounded bg-[#131328] hover:bg-pink-500 w-[40%] mt-4 sm:w-[50%] lg:w-[20%] text-white font-bold"
+              className="px-4 py-2 rounded bg-[#1d1a1a] hover:bg-[var(--flame)] w-[40%] mt-4 sm:w-[50%] lg:w-[20%] text-white font-bold"
             >
               SUBMIT
             </button>

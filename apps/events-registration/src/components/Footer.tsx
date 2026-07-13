@@ -11,22 +11,22 @@ const Footer = () => {
 			{/* closing statement */}
 			<div className="relative px-4 pb-6 pt-16 text-center">
 				<p className="font-poster text-[11vw] uppercase leading-[0.9] md:text-[8vw]">
-					<span className="text-gradient-live">See you</span>
+					<span className="text-[var(--flame)]">See you</span>
 					<br />
 					<span className="text-foreground/90">in October</span>
 				</p>
 			</div>
 
-			{/* full-width closing marquee */}
-			<div style={{ background: "var(--lime)" }}>
+			{/* full-width closing marquee — the encore, in flame */}
+			<div style={{ background: "var(--flame)" }}>
 				<Marquee duration={24} className="py-4">
 					{Array.from({ length: 6 }).map((_, i) => (
 						<span
 							key={i}
-							className="font-title mx-6 flex items-center gap-6 text-xl font-black uppercase text-[#0a0612]"
+							className="font-title mx-6 flex items-center gap-6 text-xl font-black uppercase text-[var(--bone)]"
 						>
-							Antaragni &rsquo;26 <span>&#10022;</span> IIT Kanpur
-							<span>&#10022;</span> The rebirth of culture <span>&#10022;</span>
+							Antaragni &rsquo;26 <span className="opacity-60">&bull;</span> IIT Kanpur
+							<span className="opacity-60">&bull;</span> The rebirth of culture <span className="opacity-60">&bull;</span>
 						</span>
 					))}
 				</Marquee>
@@ -35,7 +35,7 @@ const Footer = () => {
 			{/* film credits */}
 			<div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
 				<div>
-					<p className="font-title inline-block bg-[var(--pink)] px-3 py-1.5 text-xl font-black text-[#0a0612]" style={{ borderRadius: 12 }}>
+					<p className="font-title inline-block bg-[var(--paper)] px-3 py-1.5 text-xl font-black text-[#151112]" style={{ borderRadius: 12 }}>
 						ANTARAGNI&rsquo;26
 					</p>
 					<p className="mt-5 max-w-xs text-sm leading-relaxed text-foreground/60">
@@ -49,7 +49,7 @@ const Footer = () => {
 							className="h-8 w-20"
 							style={{
 								background:
-									"repeating-linear-gradient(90deg, #f4f1fa 0 2px, transparent 2px 5px)",
+									"repeating-linear-gradient(90deg, #f3ede2 0 2px, transparent 2px 5px)",
 							}}
 						/>
 						<div className="text-[9px] font-bold uppercase leading-tight tracking-[0.25em] text-foreground/70">
@@ -64,12 +64,12 @@ const Footer = () => {
 					<p className="eyebrow mb-6 inline-block">Explore</p>
 					<ul className="space-y-3 text-sm font-bold uppercase tracking-wider text-foreground/70">
 						<li>
-							<Link href="/events" className="hover:text-[var(--lime)]">
+							<Link href="/events" className="hover:text-[var(--flame)]">
 								Events
 							</Link>
 						</li>
 						<li>
-							<Link href="/roadtrips" className="hover:text-[var(--lime)]">
+							<Link href="/roadtrips" className="hover:text-[var(--flame)]">
 								Roadtrips
 							</Link>
 						</li>
@@ -78,7 +78,7 @@ const Footer = () => {
 								href="https://antaragni.in"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--lime)]"
+								className="hover:text-[var(--flame)]"
 							>
 								Main Website
 							</a>
@@ -88,7 +88,7 @@ const Footer = () => {
 								href="https://ca.antaragni.in"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--lime)]"
+								className="hover:text-[var(--flame)]"
 							>
 								CA Portal
 							</a>
@@ -97,14 +97,14 @@ const Footer = () => {
 				</div>
 
 				<div>
-					<p className="eyebrow mb-6 inline-block" style={{ color: "var(--pink)" }}>Connect</p>
+					<p className="eyebrow mb-6 inline-block" style={{ color: "var(--raspberry)" }}>Connect</p>
 					<ul className="space-y-3 text-sm font-bold uppercase tracking-wider text-foreground/70">
 						<li>
 							<a
 								href="https://www.instagram.com/antaragni.iitkanpur/"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--pink)]"
+								className="hover:text-[var(--raspberry)]"
 							>
 								Instagram
 							</a>
@@ -114,7 +114,7 @@ const Footer = () => {
 								href="https://www.facebook.com/antaragni.iitk"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--pink)]"
+								className="hover:text-[var(--raspberry)]"
 							>
 								Facebook
 							</a>
@@ -124,7 +124,7 @@ const Footer = () => {
 								href="https://www.youtube.com/user/antaragniiitkanpur"
 								target="_blank"
 								rel="noopener noreferrer"
-								className="hover:text-[var(--pink)]"
+								className="hover:text-[var(--raspberry)]"
 							>
 								YouTube
 							</a>
@@ -132,7 +132,7 @@ const Footer = () => {
 						<li>
 							<a
 								href="mailto:events@antaragni.in"
-								className="normal-case hover:text-[var(--pink)]"
+								className="normal-case hover:text-[var(--raspberry)]"
 							>
 								events@antaragni.in
 							</a>

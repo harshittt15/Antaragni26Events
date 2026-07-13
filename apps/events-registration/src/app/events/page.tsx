@@ -72,7 +72,7 @@ export default function EventsPage() {
 				{/* stage jump rail */}
 				<Reveal delay={0.2} className="mt-10 flex flex-wrap gap-3">
 					{CATEGORIES.map((cat, i) => {
-						const theme = CAT_THEME[cat] ?? { a: "#7c3aed", b: "#ff6ec7" };
+						const theme = CAT_THEME[cat] ?? { a: "#ef4e23", b: "#7e2a1c" };
 						return (
 							<a
 								key={cat}
@@ -90,7 +90,7 @@ export default function EventsPage() {
 
 			{/* ----------------------------- ZONES ------------------------------ */}
 			{CATEGORIES.map((cat, i) => {
-				const theme = CAT_THEME[cat] ?? { a: "#7c3aed", b: "#ff6ec7" };
+				const theme = CAT_THEME[cat] ?? { a: "#ef4e23", b: "#7e2a1c" };
 				const stage = STAGES[cat] ?? { stage: cat, blurb: "" };
 				const items = eventsData.filter((e) => e.category === cat);
 				return (
@@ -128,10 +128,7 @@ export default function EventsPage() {
 								<h2
 									className="font-poster mt-1 text-5xl uppercase leading-[0.9] md:text-8xl"
 									style={{
-										background: `linear-gradient(94deg, ${theme.a}, ${theme.b})`,
-										WebkitBackgroundClip: "text",
-										backgroundClip: "text",
-										color: "transparent",
+										color: theme.a,
 									}}
 								>
 									{stage.stage}
@@ -188,19 +185,19 @@ export default function EventsPage() {
 
 			{/* --------------------------- CTA STRIP ---------------------------- */}
 			<section className="py-12">
-				<div style={{ background: "var(--pink)" }}>
+				<div style={{ background: "var(--flame)" }}>
 					<Marquee duration={26} className="py-5">
 						{Array.from({ length: 8 }).map((_, i) => (
 							<Link
 								key={i}
 								href="/dashboard"
-								className="font-poster mx-8 flex items-center gap-8 text-3xl uppercase text-[#0a0612]"
+								className="font-poster mx-8 flex items-center gap-8 text-3xl uppercase text-[var(--bone)]"
 							>
 								<span>Ready to compete?</span>
 								<span className="underline decoration-4 underline-offset-4">
 									Register now
 								</span>
-								<span>&#10022;</span>
+								<span>&bull;</span>
 							</Link>
 						))}
 					</Marquee>

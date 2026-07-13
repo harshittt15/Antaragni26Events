@@ -78,10 +78,7 @@ const PageSection = ({
 			<h2
 				className="font-poster relative mb-12 w-fit text-5xl uppercase leading-none md:text-7xl"
 				style={{
-					background: `linear-gradient(92deg, ${a}, ${b})`,
-					WebkitBackgroundClip: "text",
-					backgroundClip: "text",
-					color: "transparent",
+					color: a,
 				}}
 			>
 				{title}
@@ -225,7 +222,7 @@ export default function RoadtripDetailPage({
 									/>
 								</div>
 							</TiltCard>
-							<p className="mt-4 text-sm font-bold uppercase tracking-widest text-foreground/60 transition-colors duration-300 group-hover:text-[var(--lime)]">
+							<p className="mt-4 text-sm font-bold uppercase tracking-widest text-foreground/60 transition-colors duration-300 group-hover:text-[var(--flame)]">
 								{f.kicker}
 							</p>
 						</div>
@@ -270,10 +267,7 @@ export default function RoadtripDetailPage({
 						<p
 							className="font-poster mt-5 text-2xl uppercase md:text-4xl"
 							style={{
-								background: `linear-gradient(92deg, ${theme.a}, ${theme.b})`,
-								WebkitBackgroundClip: "text",
-								backgroundClip: "text",
-								color: "transparent",
+								color: theme.a,
 							}}
 						>
 							{theme.tagline}
@@ -306,22 +300,19 @@ export default function RoadtripDetailPage({
 				</div>
 			</section>
 
-			{/* gradient marquee divider */}
-			<div
-				style={{
-					background: `linear-gradient(90deg, ${theme.a}, ${theme.b})`,
-				}}
-			>
+			{/* paper marquee divider, typed in the battle's color */}
+			<div style={{ background: "var(--paper)" }}>
 				<Marquee duration={18} className="py-3">
 					{Array.from({ length: 6 }).map((_, i) => (
 						<span
 							key={i}
-							className="font-title mx-6 flex items-center gap-6 text-lg font-black uppercase text-[#0a0612]"
+							className="font-title mx-6 flex items-center gap-6 text-lg font-black uppercase"
+							style={{ color: theme.b }}
 						>
 							{heroTitle}
-							<span>&#10022;</span>
+							<span>&bull;</span>
 							{theme.tagline}
-							<span>&#10022;</span>
+							<span>&bull;</span>
 						</span>
 					))}
 				</Marquee>
@@ -338,7 +329,7 @@ export default function RoadtripDetailPage({
 						tag={theme.tag}
 					>
 						<div className="grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
-							<p className="text-lg leading-relaxed text-foreground/75 md:text-xl [&:first-letter]:float-left [&:first-letter]:mr-3 [&:first-letter]:text-7xl [&:first-letter]:font-black [&:first-letter]:leading-[0.8] [&:first-letter]:text-[var(--lime)]">
+							<p className="text-lg leading-relaxed text-foreground/75 md:text-xl [&:first-letter]:float-left [&:first-letter]:mr-3 [&:first-letter]:text-7xl [&:first-letter]:font-black [&:first-letter]:leading-[0.8] [&:first-letter]:text-[var(--flame)]">
 								{detailInfo?.aboutUs.title ?? "Details Coming Soon"}
 							</p>
 							<div className="mx-auto h-80 w-60 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50">
@@ -416,10 +407,7 @@ export default function RoadtripDetailPage({
 								<h2
 									className="font-poster mx-auto w-fit text-5xl uppercase leading-none md:text-7xl"
 									style={{
-										background: `linear-gradient(92deg, ${theme.a}, ${theme.b})`,
-										WebkitBackgroundClip: "text",
-										backgroundClip: "text",
-										color: "transparent",
+										color: theme.a,
 									}}
 								>
 									Enter the Arena

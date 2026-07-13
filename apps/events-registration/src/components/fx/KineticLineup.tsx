@@ -131,7 +131,7 @@ export function KineticLineup({ items }: { items: LineupItem[] }) {
 						/>
 
 						<div className="relative flex items-center gap-4 px-3 py-5 md:gap-7 md:px-8 md:py-6">
-							<span className="font-title hidden w-10 shrink-0 text-sm font-bold text-foreground/30 transition-colors duration-500 group-hover:text-[#0a0612]/70 md:block">
+							<span className="font-title hidden w-10 shrink-0 text-sm font-bold text-foreground/30 transition-colors duration-500 group-hover:text-[#151112]/70 md:block">
 								{String(i + 1).padStart(2, "0")}
 							</span>
 
@@ -147,19 +147,19 @@ export function KineticLineup({ items }: { items: LineupItem[] }) {
 								/>
 							</span>
 
-							<h3 className="font-title min-w-0 flex-1 truncate text-3xl font-black uppercase leading-none tracking-tight text-foreground/85 transition-[color,transform] duration-500 group-hover:translate-x-3 group-hover:text-[#0a0612] sm:text-5xl md:text-6xl">
+							<h3 className="font-title min-w-0 flex-1 truncate text-3xl font-black uppercase leading-none tracking-tight text-foreground/85 transition-[color,transform] duration-500 group-hover:translate-x-3 group-hover:text-[#151112] sm:text-5xl md:text-6xl">
 								{item.title}
 							</h3>
 
 							{/* tagline slides in on hover */}
-							<span className="hidden max-w-0 shrink overflow-hidden whitespace-nowrap font-sans text-sm font-bold uppercase tracking-widest text-[#0a0612] opacity-0 transition-all duration-500 group-hover:max-w-[16rem] group-hover:opacity-100 lg:block">
+							<span className="hidden max-w-0 shrink overflow-hidden whitespace-nowrap font-sans text-sm font-bold uppercase tracking-widest text-[#151112] opacity-0 transition-all duration-500 group-hover:max-w-[16rem] group-hover:opacity-100 lg:block">
 								{item.tagline}
 							</span>
 
-							<span className="chip hidden shrink-0 !text-[10px] text-[color:var(--tc)] transition-colors duration-500 group-hover:!text-[#0a0612] sm:inline-flex">
+							<span className="chip hidden shrink-0 !text-[10px] text-[color:var(--tc)] transition-colors duration-500 group-hover:!text-[#151112] sm:inline-flex">
 								{item.tag}
 							</span>
-							<span className="hidden shrink-0 text-xl text-foreground/40 transition-[color,transform] duration-500 group-hover:translate-x-1 group-hover:text-[#0a0612] md:block">
+							<span className="hidden shrink-0 text-xl text-foreground/40 transition-[color,transform] duration-500 group-hover:translate-x-1 group-hover:text-[#151112] md:block">
 								&rarr;
 							</span>
 						</div>

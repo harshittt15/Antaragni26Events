@@ -87,7 +87,7 @@ function TourPoster({
 						</p>
 						<p className="truncate text-xs text-foreground/55">{t.tagline}</p>
 					</div>
-					<span className="shrink-0 text-sm font-bold uppercase tracking-widest text-foreground/50 transition-all duration-300 group-hover:text-[var(--lime)]">
+					<span className="shrink-0 text-sm font-bold uppercase tracking-widest text-foreground/50 transition-all duration-300 group-hover:text-[var(--flame)]">
 						Enter&nbsp;
 						<span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
 							&rarr;
@@ -116,7 +116,7 @@ export default function RoadtripsPage() {
 				</div>
 
 				<Reveal className="relative">
-					<span className="eyebrow mb-5 inline-block" style={{ color: "var(--pink)" }}>
+					<span className="eyebrow mb-5 inline-block" style={{ color: "var(--raspberry)" }}>
 						On tour &middot; Across India
 					</span>
 				</Reveal>
@@ -164,10 +164,7 @@ export default function RoadtripsPage() {
 								<h2
 									className="font-poster text-6xl uppercase leading-[0.85] md:text-8xl"
 									style={{
-										background: `linear-gradient(94deg, ${nat.a}, ${nat.b})`,
-										WebkitBackgroundClip: "text",
-										backgroundClip: "text",
-										color: "transparent",
+										color: nat.a,
 									}}
 								>
 									{nationals.title}
@@ -176,7 +173,7 @@ export default function RoadtripsPage() {
 									{nat.tagline} Every city champion converges on IIT Kanpur for
 									one final, deafening night.
 								</p>
-								<span className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--lime)]">
+								<span className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--flame)]">
 									Enter the finale
 									<span className="transition-transform duration-300 group-hover:translate-x-2">
 										&rarr;
@@ -191,11 +188,11 @@ export default function RoadtripsPage() {
 			{/* ------------------------- THE TOUR BILL --------------------------- */}
 			<section className="mx-auto max-w-7xl px-4 py-10 md:px-8">
 				<Reveal className="mb-12">
-					<span className="text-[10px] font-bold uppercase tracking-[0.35em] text-[var(--pink)]">
+					<span className="text-[10px] font-bold uppercase tracking-[0.35em] text-[var(--raspberry)]">
 						The tour bill
 					</span>
 					<h2 className="font-poster mt-1 text-5xl uppercase leading-[0.9] md:text-7xl">
-						Six battles. <span className="text-stroke-lime">One crown.</span>
+						Six battles. <span className="text-stroke-flame">One crown.</span>
 					</h2>
 				</Reveal>
 
@@ -212,15 +209,15 @@ export default function RoadtripsPage() {
 			</section>
 
 			{/* ------------------------- TOUR MARQUEE ---------------------------- */}
-			<div className="my-6" style={{ background: "var(--cyan)" }}>
+			<div className="my-6" style={{ background: "var(--paper)" }}>
 				<Marquee duration={26} className="py-4">
 					{Array.from({ length: 6 }).map((_, i) => (
 						<span
 							key={i}
-							className="font-poster mx-6 flex items-center gap-6 text-xl uppercase text-[#0a0612]"
+							className="font-poster mx-6 flex items-center gap-6 text-xl uppercase text-[#151112]"
 						>
-							15+ cities <span>&#9733;</span> 6 battles <span>&#9733;</span> one
-							national crown <span>&#9733;</span>
+							15+ cities <span>&bull;</span> 6 battles <span>&bull;</span> one
+							national crown <span>&bull;</span>
 						</span>
 					))}
 				</Marquee>
@@ -229,7 +226,7 @@ export default function RoadtripsPage() {
 			{/* --------------------------- HOW IT WORKS -------------------------- */}
 			<section className="mx-auto max-w-6xl px-4 pb-28 pt-14">
 				<Reveal className="mb-12">
-					<span className="eyebrow inline-block" style={{ color: "var(--cyan)" }}>
+					<span className="eyebrow inline-block" style={{ color: "var(--marigold)" }}>
 						How the tour works
 					</span>
 				</Reveal>
@@ -237,7 +234,7 @@ export default function RoadtripsPage() {
 					{STEPS.map((s, i) => (
 						<Reveal key={s.n} delay={i * 0.1}>
 							<div className="ticket relative px-7 py-8">
-								<span className="font-poster text-6xl text-gradient-live">
+								<span className="font-poster text-6xl text-[var(--flame)]">
 									{s.n}
 								</span>
 								<h3 className="font-title mt-3 text-xl font-bold uppercase">

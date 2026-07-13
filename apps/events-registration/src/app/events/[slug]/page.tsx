@@ -56,7 +56,7 @@ const IndividualEventPage = () => {
 							className="h-[130%] w-auto max-w-none blur-[1px]"
 						/>
 					</div>
-					<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#0a0612_78%)]" />
+					<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#151112_78%)]" />
 					{/* the event's own stage light */}
 					<div
 						className="pointer-events-none absolute inset-0"
@@ -69,7 +69,7 @@ const IndividualEventPage = () => {
 						<Link
 							href="/events"
 							data-cursor-text="BACK"
-							className="chip mb-8 !text-[10px] hover:border-[var(--lime)]"
+							className="chip mb-8 !text-[10px] hover:border-[var(--flame)]"
 						>
 							&larr; All events
 						</Link>
@@ -92,10 +92,7 @@ const IndividualEventPage = () => {
 						<p
 							className="font-title relative mt-6 text-xl font-bold md:text-2xl"
 							style={{
-								background: `linear-gradient(92deg, ${theme.a}, ${theme.b})`,
-								WebkitBackgroundClip: "text",
-								backgroundClip: "text",
-								color: "transparent",
+								color: theme.a,
 							}}
 						>
 							{theme.tagline}
@@ -110,23 +107,19 @@ const IndividualEventPage = () => {
 					</div>
 				</div>
 
-				{/* gradient marquee divider */}
-				<div
-					className="mb-16"
-					style={{
-						background: `linear-gradient(90deg, ${theme.a}, ${theme.b})`,
-					}}
-				>
+				{/* paper marquee divider, typed in the event's color */}
+				<div className="mb-16" style={{ background: "var(--paper)" }}>
 					<Marquee duration={18} className="py-3">
 						{Array.from({ length: 6 }).map((_, i) => (
 							<span
 								key={i}
-								className="font-title mx-6 flex items-center gap-6 text-lg font-black uppercase text-[#0a0612]"
+								className="font-title mx-6 flex items-center gap-6 text-lg font-black uppercase"
+								style={{ color: theme.b }}
 							>
 								{title}
-								<span>&#10022;</span>
+								<span>&bull;</span>
 								{theme.tagline}
-								<span>&#10022;</span>
+								<span>&bull;</span>
 							</span>
 						))}
 					</Marquee>

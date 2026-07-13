@@ -4,43 +4,40 @@
 @plugin "@tailwindcss/typography";
 
 /* ============ ANTARAGNI '26 — DESIGN TOKENS ============
-   Color-grading pass: richer "printed-poster" dark (not digital black),
-   fluorescent-ink neons (a touch matured), warm festival accents. */
+   "The fire within" — a handcrafted festival palette rooted in Indian
+   festival culture: warm charcoal stage, bone type, vermilion as the
+   signature flame, marigold garlands, with jade and raspberry as the
+   cultural counterpoints. Color arrives in blocks, not gradients. */
 @theme {
-	--color-background: #140d1e; /* midnight ink — rich, not pure black */
-	--color-foreground: #f6f1ea; /* warm paper white (was cold #f4f1fa) */
-	--color-primary: #c7f441; /* fluorescent lime */
-	--color-secondary: #ff6ec7; /* hot pink */
-	--color-accent: #7c3aed; /* electric violet */
+	--color-background: #131114; /* warm charcoal */
+	--color-foreground: #f3ede2; /* bone */
+	--color-primary: #ef4e23; /* vermilion — the fire */
+	--color-secondary: #f2a33c; /* marigold */
+	--color-accent: #2f8a72; /* jade */
 }
 
 :root {
-	--color-background: #140d1e;
-	--color-foreground: #f6f1ea;
-	--color-primary: #c7f441;
-	--color-secondary: #ff6ec7;
-	--color-accent: #7c3aed;
+	--color-background: #131114;
+	--color-foreground: #f3ede2;
+	--color-primary: #ef4e23;
+	--color-secondary: #f2a33c;
+	--color-accent: #2f8a72;
 
-	/* fluorescent-ink neons — identity colors, gently warmed/deepened */
-	--lime: #cdf24d;
-	--pink: #ff6ec7;
-	--violet: #8248f0;
-	--orange: #ff8a3d;
-	--cyan: #56d6f0; /* slightly warmer, less pure-RGB cyan */
-
-	/* warm festival accents — used only for small details/highlights */
-	--sun: #ff6b35; /* sunset orange */
-	--yellow: #ffd166; /* festival yellow */
-	--cream: #fff2d8; /* paper cream */
-	--warm-red: #ef476f;
+	/* identity accents — bold, warm, culturally rooted */
+	--flame: #ef4e23; /* vermilion — CTAs, cursor, live states */
+	--marigold: #f2a33c; /* garland gold — blocks & highlights */
+	--raspberry: #d84a6b; /* festival pink, rationed */
+	--jade: #2f8a72; /* the cool counterpoint */
+	--maroon: #7e2a1c; /* burnt ember — duotone anchor for art */
+	--bone: #f3ede2;
 
 	--font-sans: var(--font-inter);
 	--font-title: var(--font-rakkas);
 
-	/* solid panel ink — replaces glassmorphism; warm plum, not black */
-	--ink: #1b1228;
-	--ink-2: #221634; /* raised panel */
-	--paper: #f6f1ea;
+	/* solid panel ink — warm charcoal, not black */
+	--ink: #1d1a1a;
+	--ink-2: #242020; /* raised panel */
+	--paper: #f3ede2;
 }
 
 /* condensed poster face (Anton) for massive headline stacks */
@@ -59,23 +56,23 @@ body {
 }
 
 ::selection {
-	background: var(--lime);
-	color: #0a0612;
+	background: var(--flame);
+	color: var(--bone);
 }
 
 ::-webkit-scrollbar {
 	width: 10px;
 }
 ::-webkit-scrollbar-track {
-	background: #0a0612;
+	background: #151112;
 }
 ::-webkit-scrollbar-thumb {
-	background: #2c2140;
+	background: #2e2825;
 	border-radius: 999px;
-	border: 2px solid #0a0612;
+	border: 2px solid #151112;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #43325f;
+	background: #3d332d;
 }
 
 /* custom cursor takes over on fine pointers */
@@ -94,8 +91,9 @@ body {
 
 /* ============ UTILITIES ============ */
 
+/* the one intentional gradient — fire (used on portal-page titles only) */
 .text-gradient {
-	background: linear-gradient(92deg, var(--lime) 0%, var(--pink) 48%, var(--violet) 100%);
+	background: linear-gradient(92deg, var(--flame) 0%, var(--marigold) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
 	color: transparent;
@@ -106,8 +104,8 @@ body {
 	color: transparent;
 }
 
-.text-stroke-lime {
-	-webkit-text-stroke: 1.5px var(--lime);
+.text-stroke-flame {
+	-webkit-text-stroke: 1.5px var(--flame);
 	color: transparent;
 }
 
@@ -125,27 +123,27 @@ body {
 	border-radius: 999px;
 }
 
-/* buttons — bold color, clean geometry, soft lift on hover */
-.btn-festival {
+/* buttons — flame leads, paper answers; flat color, soft lift on hover */
+.btn-primary {
 	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-[transform,box-shadow] duration-200;
-	background: linear-gradient(92deg, var(--violet), var(--pink));
-	color: #fff;
+	background: var(--flame);
+	color: var(--bone);
 	border-radius: 12px;
 }
-.btn-festival:hover {
+.btn-primary:hover {
 	transform: translateY(-2px);
-	box-shadow: 0 12px 32px rgba(255, 110, 199, 0.3);
+	box-shadow: 0 12px 32px rgba(239, 78, 35, 0.35);
 }
 
-.btn-lime {
+.btn-paper {
 	@apply inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-sm uppercase tracking-widest transition-[transform,box-shadow] duration-200;
-	background: var(--lime);
-	color: #0a0612;
+	background: var(--paper);
+	color: #151112;
 	border-radius: 12px;
 }
-.btn-lime:hover {
+.btn-paper:hover {
 	transform: translateY(-2px);
-	box-shadow: 0 12px 32px rgba(199, 244, 65, 0.3);
+	box-shadow: 0 12px 32px rgba(243, 237, 226, 0.18);
 }
 
 .btn-ghost {
@@ -155,25 +153,26 @@ body {
 	color: var(--color-foreground);
 }
 .btn-ghost:hover {
-	border-color: var(--lime);
-	color: var(--lime);
+	border-color: var(--flame);
+	color: var(--flame);
 	transform: translateY(-2px);
 }
 
 /* ============ LABEL / PANEL TOOLKIT ============ */
 
-/* accent label pill — bold color, clean geometry */
+/* accent label pill — color block, ink or bone type (Wrapped-style) */
 .tape {
 	@apply inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.25em];
-	background: var(--lime);
-	color: #0a0612;
+	background: var(--paper);
+	color: #151112;
 	border-radius: 999px;
 }
-.tape-pink {
-	background: var(--pink);
+.tape-flame {
+	background: var(--flame);
+	color: var(--bone);
 }
-.tape-cyan {
-	background: var(--cyan);
+.tape-marigold {
+	background: var(--marigold);
 }
 
 /* quiet panel — used for list rails and info blocks */
@@ -193,34 +192,6 @@ body {
 	pointer-events: none;
 	line-height: 0.82;
 	white-space: nowrap;
-}
-
-/* animated gradient sweeping through display type */
-@keyframes gradient-sweep {
-	0% { background-position: 0% 50%; }
-	50% { background-position: 100% 50%; }
-	100% { background-position: 0% 50%; }
-}
-.text-gradient-live {
-	background: linear-gradient(
-		100deg,
-		var(--lime),
-		var(--cream),
-		var(--pink),
-		var(--violet),
-		var(--lime)
-	);
-	background-size: 300% 100%;
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-	animation: gradient-sweep 9s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.text-gradient-live {
-		animation: none;
-	}
 }
 
 /* ============ ATMOSPHERE (night-festival background) ============ */
@@ -254,27 +225,9 @@ body {
 	}
 }
 
-/* ============ HERO WORDMARK (layered chrome poster type) ============ */
+/* ============ HERO WORDMARK ============ */
 
-/* premium chrome sweep — soft cream→pink→violet→cyan, no harsh rainbow */
-.text-chrome {
-	background: linear-gradient(
-		105deg,
-		#fdfbff 0%,
-		#ffd9f2 18%,
-		#ff6ec7 38%,
-		#a78bfa 58%,
-		#4dd8ff 78%,
-		#fdfbff 100%
-	);
-	background-size: 240% 100%;
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
-	animation: gradient-sweep 13s ease-in-out infinite;
-}
-
-/* the hero word — one confident layer, no echoes */
+/* the hero word — solid bone, typography carries it */
 .hero-word {
 	white-space: nowrap;
 	letter-spacing: -0.02em;
@@ -304,15 +257,16 @@ body {
 
 /* marker highlight behind a phrase */
 .marker {
-	background: linear-gradient(100deg, transparent 1%, var(--lime) 2%, var(--lime) 96%, transparent 98%);
-	color: #0a0612;
+	background: linear-gradient(100deg, transparent 1%, var(--marigold) 2%, var(--marigold) 96%, transparent 98%);
+	color: #151112;
 	padding: 0 0.3em;
 	font-weight: 700;
 	box-decoration-break: clone;
 	-webkit-box-decoration-break: clone;
 }
-.marker-pink {
-	background: linear-gradient(100deg, transparent 1%, var(--pink) 2%, var(--pink) 96%, transparent 98%);
+.marker-flame {
+	background: linear-gradient(100deg, transparent 1%, var(--flame) 2%, var(--flame) 96%, transparent 98%);
+	color: var(--bone);
 }
 
 /* marquee */
@@ -360,8 +314,8 @@ body {
 	position: absolute;
 	inset: 0;
 	background:
-		radial-gradient(60% 50% at 50% 0%, rgba(255, 138, 61, 0.05), transparent 70%),
-		radial-gradient(50% 40% at 100% 100%, rgba(255, 110, 199, 0.04), transparent 70%);
+		radial-gradient(60% 50% at 50% 0%, rgba(239, 78, 35, 0.04), transparent 70%),
+		radial-gradient(50% 40% at 100% 100%, rgba(242, 163, 60, 0.04), transparent 70%);
 }
 
 /* glow card hover */
@@ -378,7 +332,7 @@ body {
 	transition: opacity 0.5s;
 	background: radial-gradient(
 		600px circle at var(--mx, 50%) var(--my, 50%),
-		rgba(199, 244, 65, 0.08),
+		rgba(239, 78, 35, 0.07),
 		transparent 45%
 	);
 	pointer-events: none;
@@ -390,7 +344,7 @@ body {
 /* section eyebrow */
 .eyebrow {
 	@apply text-xs font-bold uppercase tracking-[0.35em];
-	color: var(--lime);
+	color: var(--flame);
 }
 
 @media screen and (max-width: 768px) {

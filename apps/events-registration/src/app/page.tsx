@@ -11,21 +11,28 @@ import { PosterArt } from "../components/fx/PosterArt";
 import { Magnetic } from "../components/fx/Magnetic";
 import { eventTheme, tripTheme } from "../data/themes";
 import { Contact } from "../components/Contact";
+import { useStore } from "@repo/store";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /* ---------------------------------- HERO ----------------------------------
-   An album cover, not a landing page: left-anchored giant wordmark with a
-   live gradient sweeping through it, a whisper of repeated outline type
+   An album cover, not a landing page: left-anchored giant bone wordmark
+   with its last letter set alight, a whisper of repeated outline type
    behind, date stamp top-right. */
 
 const TITLE = "ANTARAGNI";
 
 function Hero() {
 	const ref = useRef<HTMLDivElement>(null);
+	const { initialAnimation } = useStore();
 
 	useGSAP(
 		() => {
+			/* hold the entrance while the preloader curtain is still up —
+			   it releases initialAnimation as the curtain starts to lift,
+			   so this plays as one continuous reveal */
+			if (initialAnimation) return;
+
 			if (!document.hidden) {
 				const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 				tl.from(".hero-letter", {
@@ -68,7 +75,7 @@ function Hero() {
 				},
 			});
 		},
-		{ scope: ref }
+		{ scope: ref, dependencies: [initialAnimation] }
 	);
 
 	return (
@@ -77,8 +84,8 @@ function Hero() {
 			className="relative flex min-h-screen flex-col justify-center overflow-hidden px-5 md:px-12"
 		>
 			{/* whisper of outline type behind everything */}
-			<div className="hero-backdrop pointer-events-none absolute inset-0 flex flex-col justify-center gap-6">
-				{[0, 1, 2].map((row) => (
+			<div className="hero-backdrop pointer-events-none absolute inset-0 flex flex-col justify-center gap-10">
+				{[0, 1].map((row) => (
 					<div
 						key={row}
 						className="backdrop-word font-poster text-[11vw] uppercase"
@@ -97,18 +104,18 @@ function Hero() {
 			<div className="hero-stamp absolute right-5 top-24 md:right-14 md:top-28">
 				<div className="flex flex-col items-end gap-1.5">
 					<span className="tape">OCT 2026</span>
-					<span className="tape tape-pink">IIT KANPUR</span>
-					<span className="tape tape-cyan">61st Edition</span>
+					<span className="tape tape-flame">IIT KANPUR</span>
+					<span className="tape tape-marigold">61st Edition</span>
 				</div>
 			</div>
 
 			<div className="relative max-w-[1500px]">
 				<p className="hero-eyebrow mb-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.35em] text-foreground/70">
-					<span className="inline-block h-3 w-3 rotate-45" style={{ background: "var(--lime)" }} />
+					<span className="inline-block h-1.5 w-1.5 rounded-full" style={{ background: "var(--flame)" }} />
 					North India&rsquo;s biggest college cultural festival
 				</p>
 
-				{/* the identity — one confident line with a live chrome sweep */}
+				{/* the identity — solid bone type, one letter set alight */}
 				<div className="hero-title relative w-fit select-none">
 					<h1
 						className="hero-word font-title relative text-[10.5vw] font-black md:text-[9.3vw]"
@@ -121,8 +128,12 @@ function Hero() {
 								aria-hidden
 							>
 								<span
-									className="hero-letter text-chrome inline-block"
-									style={{ animationDelay: `${i * 0.4}s` }}
+									className="hero-letter inline-block"
+									style={
+										i === TITLE.length - 1
+											? { color: "var(--flame)" }
+											: undefined
+									}
 								>
 									{ch}
 								</span>
@@ -139,12 +150,12 @@ function Hero() {
 
 					<div className="flex flex-wrap items-center gap-5">
 						<Magnetic>
-							<Link href="/events" className="hero-cta btn-lime" data-cursor-text="GO">
+							<Link href="/events" className="hero-cta btn-primary" data-cursor-text="GO">
 								Explore Events
 							</Link>
 						</Magnetic>
 						<Magnetic>
-							<Link href="/roadtrips" className="hero-cta btn-festival" data-cursor-text="GO">
+							<Link href="/roadtrips" className="hero-cta btn-paper" data-cursor-text="GO">
 								Ride the Roadtrips
 							</Link>
 						</Magnetic>
@@ -180,15 +191,15 @@ const WORDS = [
 function Band() {
 	return (
 		<div className="relative z-10 overflow-hidden py-14">
-			<div style={{ background: "var(--lime)" }}>
+			<div style={{ background: "var(--marigold)" }}>
 				<Marquee duration={22} className="py-3">
 					{WORDS.map((w) => (
 						<span
 							key={w}
-							className="font-title mx-4 flex items-center gap-8 text-xl font-bold uppercase tracking-wide text-[#0a0612]"
+							className="font-title mx-4 flex items-center gap-8 text-xl font-bold uppercase tracking-wide text-[#151112]"
 						>
 							{w}
-							<span className="text-[#0a0612]/50">&#10022;</span>
+							<span className="text-[#151112]/40">&bull;</span>
 						</span>
 					))}
 				</Marquee>
@@ -208,13 +219,13 @@ function Portals() {
 			</div>
 
 			<Reveal className="relative mb-20 max-w-lg">
-				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--pink)" }}>
+				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--raspberry)" }}>
 					Pick your universe
 				</span>
 				<h2 className="font-title text-4xl font-black uppercase leading-none md:text-6xl">
 					One fest.
 					<br />
-					<span className="text-gradient-live">Two worlds.</span>
+					<span className="text-[var(--flame)]">Two worlds.</span>
 				</h2>
 			</Reveal>
 
@@ -231,12 +242,12 @@ function Portals() {
 							<PosterArt
 								slug="events-portal"
 								title="Events"
-								a="#7c3aed"
-								b="#ff6ec7"
+								a="#ef4e23"
+								b="#7e2a1c"
 								motif="rays"
 								className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105"
 							/>
-							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent" />
+							<div className="absolute inset-0 bg-gradient-to-t from-[#151112] via-transparent to-transparent" />
 							<div className="absolute bottom-0 w-full p-7">
 								<h3 className="font-poster text-7xl uppercase leading-none">
 									Events
@@ -245,7 +256,7 @@ function Portals() {
 									40+ competitions across dance, music, drama, literary arts,
 									quizzing and fashion. The main arena awaits.
 								</p>
-								<span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--lime)]">
+								<span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--flame)]">
 									Enter the arena
 									<span className="transition-transform duration-300 group-hover:translate-x-2">
 										&rarr;
@@ -263,19 +274,19 @@ function Portals() {
 						data-cursor-text="ENTER"
 						className="group relative block overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/50 transition-transform duration-500 hover:-translate-y-2"
 					>
-						<span className="tape tape-cyan absolute right-6 top-6 z-10">
+						<span className="tape tape-marigold absolute right-6 top-6 z-10">
 							Across India
 						</span>
 						<div className="relative h-[520px] overflow-hidden">
 							<PosterArt
 								slug="roadtrips-portal"
 								title="Roadtrips"
-								a="#c7f441"
-								b="#ff6ec7"
+								a="#f2a33c"
+								b="#d84a6b"
 								motif="burst"
 								className="absolute inset-0 h-full w-full transition-transform duration-700 group-hover:scale-105"
 							/>
-							<div className="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent" />
+							<div className="absolute inset-0 bg-gradient-to-t from-[#151112] via-transparent to-transparent" />
 							<div className="absolute bottom-0 w-full p-7">
 								<h3 className="font-poster text-7xl uppercase leading-none">
 									Roadtrips
@@ -284,7 +295,7 @@ function Portals() {
 									Rock, rap, beatboxing, comedy and DJ battles hit your city
 									before the grand finale at IIT Kanpur.
 								</p>
-								<span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--pink)]">
+								<span className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[var(--raspberry)]">
 									Hit the road
 									<span className="transition-transform duration-300 group-hover:translate-x-2">
 										&rarr;
@@ -340,7 +351,7 @@ function About() {
 					</span>
 					<h2 className="font-title text-4xl font-black leading-tight md:text-5xl">
 						Six decades of{" "}
-						<span className="marker-pink marker inline-block">
+						<span className="marker-flame marker inline-block">
 							goosebumps.
 						</span>
 					</h2>
@@ -363,9 +374,9 @@ function About() {
 							<span
 								className={`font-poster w-56 text-right text-7xl leading-[0.9] md:text-8xl ${
 									s.style === "gradient"
-										? "text-gradient-live"
+										? "text-[var(--marigold)]"
 										: s.style === "outline"
-											? "text-stroke-lime"
+											? "text-stroke-flame"
 											: ""
 								}`}
 							>
@@ -417,11 +428,11 @@ function Legacy() {
 			</div>
 
 			<Reveal className="relative mx-auto mb-16 max-w-6xl px-4">
-				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--cyan)" }}>
+				<span className="eyebrow mb-4 inline-block" style={{ color: "var(--marigold)" }}>
 					The wall of legends
 				</span>
 				<h2 className="font-title max-w-xl text-4xl font-black uppercase leading-none md:text-6xl">
-					They played <span className="text-gradient-live">our stage.</span>
+					They played <span className="text-[var(--marigold)]">our stage.</span>
 				</h2>
 			</Reveal>
 
@@ -457,10 +468,10 @@ function Legacy() {
 						key={a}
 						className="font-poster mx-6 flex items-center gap-12 text-4xl uppercase md:text-6xl"
 					>
-						<span className="text-stroke transition-colors duration-300 hover:text-[var(--lime)]">
+						<span className="text-stroke transition-colors duration-300 hover:text-[var(--flame)]">
 							{a}
 						</span>
-						<span style={{ color: "var(--pink)" }}>&#10022;</span>
+						<span style={{ color: "var(--raspberry)" }}>&bull;</span>
 					</span>
 				))}
 			</Marquee>

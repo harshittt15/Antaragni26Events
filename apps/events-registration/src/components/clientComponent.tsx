@@ -2,12 +2,12 @@
 import { ReactNode } from "react";
 import { useStore } from "@repo/store";
 import { InitialState } from "@repo/firebase";
-import { Loader } from "@repo/ui/loader";
 import SessionLoader from "./SessionLoader";
 import Header from "./Header";
 import Footer from "./Footer";
 import { CharGrid } from "./fx/CharGrid";
 import { Atmosphere } from "./fx/Atmosphere";
+import { Preloader } from "./Preloader";
 
 export function ClientComponent({ children }: { children: ReactNode }) {
 	const { initialAnimation, loading } = useStore();
@@ -16,7 +16,8 @@ export function ClientComponent({ children }: { children: ReactNode }) {
 	return (
 		<>
 			<InitialState document="eventsUsers2025" />
-			{initialAnimation && <Loader type={2} />}
+			{/* opening title card — manages its own lifecycle, renders null once done */}
+			<Preloader />
 			{showSessionLoader && <SessionLoader />}
 			<div className="fixed inset-0 pointer-events-none">
 				<Atmosphere />

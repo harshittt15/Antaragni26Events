@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
-/* Custom cursor: lime dot + lagging ring.
+/* Custom cursor: amber dot + lagging ring.
    Ring expands over interactive elements; shows optional label via [data-cursor-text]. */
 export function Cursor() {
 	const dotRef = useRef<HTMLDivElement>(null);
@@ -47,8 +47,8 @@ export function Cursor() {
 				gsap.to(ring, {
 					scale: text ? 3.2 : 1.8,
 					backgroundColor: text
-						? "rgba(199,244,65,0.95)"
-						: "rgba(199,244,65,0.12)",
+						? "rgba(239,78,35,0.95)"
+						: "rgba(239,78,35,0.12)",
 					duration: 0.35,
 					ease: "power3.out",
 				});
@@ -57,7 +57,7 @@ export function Cursor() {
 				label.textContent = "";
 				gsap.to(ring, {
 					scale: 1,
-					backgroundColor: "rgba(199,244,65,0)",
+					backgroundColor: "rgba(239,78,35,0)",
 					duration: 0.35,
 					ease: "power3.out",
 				});
@@ -78,12 +78,12 @@ export function Cursor() {
 			<div
 				ref={dotRef}
 				className="pointer-events-none fixed left-0 top-0 z-[100] h-2 w-2 rounded-full"
-				style={{ background: "var(--lime)" }}
+				style={{ background: "var(--flame)" }}
 			/>
 			<div
 				ref={ringRef}
 				className="pointer-events-none fixed left-0 top-0 z-[99] flex h-10 w-10 items-center justify-center rounded-full border"
-				style={{ borderColor: "rgba(199,244,65,0.55)" }}
+				style={{ borderColor: "rgba(239,78,35,0.55)" }}
 			>
 				<span
 					ref={labelRef}

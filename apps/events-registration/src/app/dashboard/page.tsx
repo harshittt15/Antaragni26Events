@@ -29,7 +29,7 @@ export default function EventDetails() {
 							:	"Dashboard"}
 						</h1>
 						{user?.details?.id && (
-							<p className="chip mt-5 !text-[10px]" style={{ color: "var(--lime)" }}>
+							<p className="chip mt-5 !text-[10px]" style={{ color: "var(--flame)" }}>
 								Antaragni ID &middot; {user.details.id}
 							</p>
 						)}
@@ -43,11 +43,11 @@ export default function EventDetails() {
 								onClick={() => setActiveTab(tab)}
 								className={`shrink-0 rounded-full px-5 py-2 text-xs font-bold uppercase tracking-widest transition-all duration-300 ${
 									activeTab === tab ?
-										"text-[#0a0612]"
+										"text-[#151112]"
 									:	"text-foreground/60 hover:text-foreground"
 								}`}
 								style={
-									activeTab === tab ? { background: "var(--lime)" } : undefined
+									activeTab === tab ? { background: "var(--flame)" } : undefined
 								}
 							>
 								{tab}

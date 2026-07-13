@@ -15,19 +15,19 @@ const CELL = 24; // px per grid cell
 const DECAY = 0.965; // heat retained per frame (higher = longer trail)
 const BASE_ALPHA = 0.06;
 
-/* heat 0→1 maps violet → pink → lime */
+/* heat 0→1 maps ember → vermilion → marigold, like coals catching */
 function heatColor(t: number, alpha: number): string {
 	let r: number, g: number, b: number;
 	if (t < 0.5) {
 		const k = t * 2;
-		r = 124 + (255 - 124) * k;
-		g = 58 + (110 - 58) * k;
-		b = 237 + (199 - 237) * k;
+		r = 126 + (239 - 126) * k;
+		g = 42 + (78 - 42) * k;
+		b = 28 + (35 - 28) * k;
 	} else {
 		const k = (t - 0.5) * 2;
-		r = 255 + (199 - 255) * k;
-		g = 110 + (244 - 110) * k;
-		b = 199 + (65 - 199) * k;
+		r = 239 + (242 - 239) * k;
+		g = 78 + (163 - 78) * k;
+		b = 35 + (60 - 35) * k;
 	}
 	return `rgba(${r | 0},${g | 0},${b | 0},${alpha})`;
 }
