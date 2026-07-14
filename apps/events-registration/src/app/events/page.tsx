@@ -21,7 +21,7 @@ const STAGES: Record<string, { stage: string; blurb: string }> = {
 	},
 	"Literary Arts": {
 		stage: "Literary Arena",
-		blurb: "Words as weapons — debates, quizzes and poetry that cuts.",
+		blurb: "Words as weapons: debates, quizzes and poetry that cuts.",
 	},
 	"Media Arts": {
 		stage: "Media District",
@@ -37,7 +37,7 @@ const STAGES: Record<string, { stage: string; blurb: string }> = {
 	},
 	Fashion: {
 		stage: "The Runway",
-		blurb: "Walk like thunder — India's boldest college fashion battle.",
+		blurb: "Walk like thunder. India's boldest college fashion battle.",
 	},
 	"Special Event": {
 		stage: "After Dark Zone",

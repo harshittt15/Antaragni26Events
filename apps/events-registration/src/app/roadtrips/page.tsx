@@ -18,7 +18,7 @@ const STEPS = [
 	{
 		n: "01",
 		title: "Register your act",
-		desc: "Pick your battle — rock, rap, beatbox, comedy or decks — and sign up online.",
+		desc: "Pick your battle: rock, rap, beatbox, comedy or decks. Sign up online.",
 	},
 	{
 		n: "02",
@@ -28,7 +28,7 @@ const STEPS = [
 	{
 		n: "03",
 		title: "Finale at IIT Kanpur",
-		desc: "City champions clash on the biggest stage of them all — the Nationals at Antaragni '26.",
+		desc: "City champions clash on the biggest stage of them all: the Nationals at Antaragni '26.",
 	},
 ];
 

@@ -144,7 +144,7 @@ function Hero() {
 
 				<div className="mt-8 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
 					<p className="hero-sub max-w-md text-base leading-relaxed text-foreground/70 md:text-lg">
-						Four days. Hundreds of stages. One incredible story — and
+						Four days. Hundreds of stages. One incredible story. And
 						you&rsquo;re in it. The 61st edition returns louder than ever.
 					</p>
 
@@ -358,7 +358,7 @@ function About() {
 					<p className="mt-6 leading-relaxed text-foreground/70">
 						Since 1966, Antaragni has been where India&rsquo;s most fearless
 						performers collide. From midnight jam sessions to roaring pronites,
-						from street plays that stop crowds to quizzes that break brains —
+						from street plays that stop crowds to quizzes that break brains,
 						this is the stage where legends take their first bow.
 					</p>
 					<p className="mt-4 leading-relaxed text-foreground/70">
