@@ -115,7 +115,7 @@ function Hero() {
 					North India&rsquo;s biggest college cultural festival
 				</p>
 
-				{/* the identity — solid bone type, one letter set alight */}
+				{/* the identity — solid bone type, one unified wordmark */}
 				<div className="hero-title relative w-fit select-none">
 					<h1
 						className="hero-word font-title relative text-[10.5vw] font-black md:text-[9.3vw]"
@@ -127,16 +127,7 @@ function Hero() {
 								className="inline-block overflow-hidden align-bottom"
 								aria-hidden
 							>
-								<span
-									className="hero-letter inline-block"
-									style={
-										i === TITLE.length - 1
-											? { color: "var(--flame)" }
-											: undefined
-									}
-								>
-									{ch}
-								</span>
+								<span className="hero-letter inline-block">{ch}</span>
 							</span>
 						))}
 					</h1>
